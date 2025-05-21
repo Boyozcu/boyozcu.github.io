@@ -141,15 +141,25 @@ bool FullCoveragePlanner::isObstacle(double world_x, double world_y) {
         ROS_DEBUG_THROTTLE(2.0, "[FCP::isObstacle] Point (%.2f, %.2f) is OUTSIDE costmap bounds. Treating as obstacle.", world_x, world_y);
         return true; 
     }
-    unsigned char cost = costmap_->getCost(map_x, map_y);
-    
-    bool is_obs = (cost >= costmap_2d::INSCRIBED_INFLATED_OBSTACLE && cost != costmap_2d::NO_INFORMATION); 
-    // bool is_obs = (cost == costmap_2d::LETHAL_OBSTACLE); // Test için sadece kesin engelleri de deneyebilirsiniz
 
-    if (is_obs) {
-        ROS_DEBUG_THROTTLE(0.5, "[FCP::isObstacle] OBSTACLE DETECTED at (%.2f, %.2f) -> Cost: %d", world_x, world_y, cost);
+    // Check a 3x3 grid around the point for safety
+    for(int dx = -1; dx <= 1; dx++) {
+        for(int dy = -1; dy <= 1; dy++) {
+            int check_x = map_x + dx;
+            int check_y = map_y + dy;
+            
+            if(check_x >= 0 && check_x < costmap_->getSizeInCellsX() &&
+               check_y >= 0 && check_y < costmap_->getSizeInCellsY()) {
+                unsigned char cost = costmap_->getCost(check_x, check_y);
+                // Consider both lethal and inscribed obstacles as blocking
+                if(cost >= costmap_2d::INSCRIBED_INFLATED_OBSTACLE || cost == costmap_2d::LETHAL_OBSTACLE) {
+                    ROS_DEBUG_THROTTLE(0.5, "[FCP::isObstacle] OBSTACLE DETECTED near (%.2f, %.2f) -> Cost: %d", world_x, world_y, cost);
+                    return true;
+                }
+            }
+        }
     }
-    return is_obs;
+    return false;
 }
 
 bool FullCoveragePlanner::findClearPathSegment(const geometry_msgs::Point& start_p, const geometry_msgs::Point& end_p,

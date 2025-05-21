@@ -12,10 +12,10 @@
   <arg name="sweep_spacing_factor" default="0.85"/>
   <arg name="path_point_distance" default="0.05"/>
   <arg name="use_param_poly" default="true"/> <!-- true: parametrelerden poligon, false: konudan poligon -->
-  <arg name="p1x" default="0.5"/> <arg name="p1y" default="-1.5"/>
-  <arg name="p2x" default="2.5"/> <arg name="p2y" default="-1.5"/>
-  <arg name="p3x" default="2.5"/> <arg name="p3y" default="0.5"/>
-  <arg name="p4x" default="0.5"/> <arg name="p4y" default="0.5"/>
+  <arg name="p1x" default="-4.0"/> <arg name="p1y" default="2.5"/>
+  <arg name="p2x" default="4.0"/> <arg name="p2y" default="2.5"/>
+  <arg name="p3x" default="4.0"/> <arg name="p3y" default="-2.5"/>
+  <arg name="p4x" default="-4.0"/> <arg name="p4y" default="-2.5"/>
 
   <!-- === PurePursuitLocalPlanner için Argümanlar === -->
   <arg name="lookahead_distance" default="0.4"/>
