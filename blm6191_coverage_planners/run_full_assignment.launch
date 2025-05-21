@@ -1,0 +1,83 @@
+<launch>
+
+  <!-- === Temel Argümanlar === -->
+  <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+  <arg name="world_file_name" default="turtlebot3_willowgarage.launch"/> <!-- Gazebo world launch file name -->
+  <arg name="slam_methods" default="gmapping" doc="slam type [gmapping, cartographer, hector, karto, front_end]"/>
+  <arg name="open_rviz_launch" default="true" doc="Launch RVIZ with custom config"/>
+  <arg name="rviz_config_file_name" default="coverage_assignment.rviz"/>
+
+  <!-- === FullCoveragePlanner için Argümanlar === -->
+  <arg name="robot_radius" default="0.17"/>
+  <arg name="sweep_spacing_factor" default="0.85"/>
+  <arg name="path_point_distance" default="0.05"/>
+  <arg name="use_param_poly" default="true"/> <!-- true: parametrelerden poligon, false: konudan poligon -->
+  <arg name="p1x" default="0.5"/> <arg name="p1y" default="-1.5"/>
+  <arg name="p2x" default="2.5"/> <arg name="p2y" default="-1.5"/>
+  <arg name="p3x" default="2.5"/> <arg name="p3y" default="0.5"/>
+  <arg name="p4x" default="0.5"/> <arg name="p4y" default="0.5"/>
+
+  <!-- === PurePursuitLocalPlanner için Argümanlar === -->
+  <arg name="lookahead_distance" default="0.4"/>
+  <arg name="linear_vel" default="0.15"/>
+  <arg name="max_angular_vel" default="0.7"/>
+  <arg name="goal_dist_tolerance" default="0.1"/>
+
+  <!-- === Polygon Publisher için Argüman === -->
+  <arg name="launch_polygon_publisher" default="false"/> <!-- true ise polygon_publisher_node başlar -->
+
+
+  <!-- === Gazebo'yu Başlat === -->
+  <include file="$(find turtlebot3_gazebo)/launch/$(arg world_file_name)">
+    <arg name="model" value="$(arg model)"/>
+  </include>
+
+  <!-- === Robot State Publisher (TurtleBot3 için genellikle SLAM launch dosyasında bulunur) === -->
+  <!-- Eğer SLAM launch dosyanız robot_state_publisher'ı başlatmıyorsa, buraya ekleyebilirsiniz:
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen">
+    <param name="publish_frequency" type="double" value="50.0" />
+  </node>
+  -->
+
+  <!-- === SLAM (GMapping) Başlat === -->
+  <include file="$(find turtlebot3_slam)/launch/turtlebot3_slam.launch">
+    <arg name="model" value="$(arg model)"/>
+    <arg name="slam_methods" value="$(arg slam_methods)"/>
+    <arg name="open_rviz" value="false"/> <!-- RVIZ'i aşağıda ayrı olarak başlatacağız -->
+  </include>
+
+  <!-- === Move Base'i Özel Planlayıcılarla Başlat === -->
+  <!-- my_coverage_move_base.launch dosyasını include etmek yerine içeriğini buraya taşıyabiliriz
+       veya include edip argümanları geçebiliriz. Ayrı dosya daha modüler. -->
+  <include file="$(find blm6191_coverage_planners)/my_coverage_move_base.launch">
+    <arg name="model" value="$(arg model)"/>
+    <!-- FullCoveragePlanner argümanları -->
+    <arg name="robot_radius_val" value="$(arg robot_radius)"/>
+    <arg name="sweep_spacing_factor_val" value="$(arg sweep_spacing_factor)"/>
+    <arg name="path_point_distance_val" value="$(arg path_point_distance)"/>
+    <arg name="use_param_poly_val" value="$(arg use_param_poly)"/>
+    <arg name="p1x_val" value="$(arg p1x)"/> <arg name="p1y_val" value="$(arg p1y)"/>
+    <arg name="p2x_val" value="$(arg p2x)"/> <arg name="p2y_val" value="$(arg p2y)"/>
+    <arg name="p3x_val" value="$(arg p3x)"/> <arg name="p3y_val" value="$(arg p3y)"/>
+    <arg name="p4x_val" value="$(arg p4x)"/> <arg name="p4y_val" value="$(arg p4y)"/>
+    <!-- PurePursuitLocalPlanner argümanları -->
+    <arg name="lookahead_val" value="$(arg lookahead_distance)"/>
+    <arg name="linear_vel_val" value="$(arg linear_vel)"/>
+    <arg name="max_angular_vel_val" value="$(arg max_angular_vel)"/>
+    <arg name="goal_dist_tolerance_val" value="$(arg goal_dist_tolerance)"/>
+    <!-- Polygon Publisher argümanı -->
+    <arg name="launch_polygon_publisher_val" value="$(arg launch_polygon_publisher)"/>
+  </include>
+
+  <!-- === RVIZ'i Başlat === -->
+  <group if="$(arg open_rviz_launch)">
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find blm6191_coverage_planners)/$(arg rviz_config_file_name)" required="true"/>
+  </group>
+
+  <!-- === Teleop için bilgilendirme (launch dosyası bunu otomatik başlatamaz) === -->
+  <!-- Kullanıcıya ayrı bir terminalde teleop başlatması gerektiğini hatırlatırız. -->
+  <node name="teleop_reminder" pkg="rostopic" type="rostopic"
+        args="echo 'TELEOP REMINDER: To manually control the robot for mapping, open a new terminal and run: roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch'"
+        output="screen" launch-prefix="bash -c 'sleep 15; $0 $@'"/>
+
+</launch>

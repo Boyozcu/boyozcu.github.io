@@ -1,0 +1,23 @@
+# planner_params.yaml
+
+FullCoveragePlanner:
+  robot_radius: 0.20
+  sweep_spacing_factor: 0.75
+  path_point_distance: 0.05
+  frame_id: "map"
+  use_param_poly: true
+  p1_x: -3.5
+  p1_y: 2.2
+  p2_x: 3.5
+  p2_y: 2.2
+  p3_x: 3.5
+  p3_y: -2.0
+  p4_x: -3.5
+  p4_y: -2.0
+
+PurePursuitLocalPlanner:
+  lookahead_distance: 0.9
+  linear_vel: 0.10
+  max_angular_vel: 0.55
+  goal_dist_tolerance: 0.15
+  robot_base_frame: "base_footprint"

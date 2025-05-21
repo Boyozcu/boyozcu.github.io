@@ -1,0 +1,330 @@
+Panels:
+  - Class: rviz/Displays
+    Help Height: 78
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /Global Options1
+        - /Grid1
+        - /TF1
+        - /RobotModel1
+        - /Map1
+        - /Path1 # Global Coverage Plan
+        - /Path2 # MoveBase Global Plan
+        - /Path3 # Local Plan
+        - /Marker1 # Carrot Marker
+        - /Marker2 # Coverage Area Visual (YENİ)
+        - /Polygon1 # Coverage Polygon (opsiyonel, polygon_publisher_node için)
+        - /LaserScan1
+      Splitter Ratio: 0.5
+    Tree Height: 700 # Biraz artırıldı
+  - Class: rviz/Selection
+    Name: Selection
+  - Class: rviz/Tool Properties
+    Expanded:
+      - /2D Nav Goal1
+      - /Publish Point1
+    Name: Tool Properties
+    Splitter Ratio: 0.5886790156364441
+  - Class: rviz/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5
+  - Class: rviz/Time
+    Experimental: false
+    Name: Time
+    SyncMode: 0
+    SyncSource: ""
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.5
+      Cell Size: 1
+      Class: rviz/Grid
+      Color: 160; 160; 164
+      Enabled: true
+      Line Style:
+        Line Width: 0.029999999329447746
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 10
+      Reference Frame: <Fixed Frame> # Genellikle map olur
+      Value: true
+    - Class: rviz/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: false # Çok fazla çerçeve karmaşa yaratabilir, önemlileri açın
+        map:
+          Value: true
+        odom:
+          Value: true
+        base_footprint:
+          Value: true
+        base_scan:
+          Value: true
+        # Diğer gerekli çerçeveleri buradan true yapabilirsiniz
+      Marker Scale: 0.25 # Biraz küçültüldü
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Tree: {} # Otomatik oluşturulur
+      Update Interval: 0
+      Value: true
+    - Class: rviz/RobotModel
+      Description Source: Topic
+      Description Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /robot_description
+      Enabled: true
+      Name: RobotModel
+      TF Prefix: ""
+      Update Interval: 0
+      Value: true
+      Visual Enabled: true
+    - Alpha: 0.7
+      Class: rviz/Map
+      Color Scheme: map # veya costmap
+      Draw Behind: false
+      Enabled: true
+      Name: Map (from SLAM)
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile # SLAM haritası için TransienYerel daha iyi olabilir
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /map
+      Use Timestamp: false
+      Value: true
+    - Class: rviz/Path # FullCoveragePlanner'ın özel planı
+      Buffer Length: 1
+      Color: 0; 255; 0 # Yeşil
+      Enabled: true
+      Head Diameter: 0.2
+      Head Length: 0.15
+      Length: 0.2
+      Line Style: Lines
+      Line Width: 0.04
+      Name: Path - Global Coverage Plan
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0.03 # Haritanın biraz üzerinde
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /move_base/FullCoveragePlanner/coverage_plan
+      Value: true
+    - Class: rviz/Path # move_base'in aktif global planı
+      Buffer Length: 1
+      Color: 255; 0; 255 # Mor
+      Enabled: true
+      Head Diameter: 0.2
+      Head Length: 0.15
+      Length: 0.2
+      Line Style: Lines
+      Line Width: 0.03
+      Name: Path - MoveBase Active Global Plan
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0.02 # Diğer plandan biraz farklı Z
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /move_base/TrajectoryPlannerROS/global_plan # Veya /move_base/DWAPlannerROS/global_plan ya da sadece /move_base/global_plan
+      Value: true
+    - Class: rviz/Path # Yerel planlayıcının yolu
+      Buffer Length: 10
+      Color: 0; 255; 255 # Açık Mavi (Cyan)
+      Enabled: true
+      Head Diameter: 0.15
+      Head Length: 0.1
+      Length: 0.15
+      Line Style: Lines
+      Line Width: 0.02
+      Name: Path - Local Plan
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0.01
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /move_base/PurePursuitLocalPlanner/local_plan # Veya /move_base/TrajectoryPlannerROS/local_plan vb.
+      Value: true
+    - Class: rviz/Marker # Pure Pursuit "havuç" noktası
+      Enabled: true
+      Marker Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /move_base/PurePursuitLocalPlanner/carrot_marker
+      Name: Marker - Carrot
+      Namespaces:
+        pure_pursuit_carrot: true
+      Queue Size: 10
+      Value: true
+    - Class: rviz/Marker # YENİ: Kapsama Alanı Poligonu Görselleştirmesi
+      Enabled: true
+      Marker Topic:
+        Depth: 5
+        Durability Policy: Latched # Python betiği latch=true ile yayınlıyor
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /coverage_area_marker # Python betiğinin yayınladığı konu
+      Name: Marker - Coverage Area Visual
+      Namespaces:
+        coverage_polygon_visualization: true # Python betiğindeki ns ile eşleşmeli
+      Queue Size: 1
+      Value: true
+    - Alpha: 0.3 # Opsiyonel: polygon_publisher_node için
+      Class: rviz/Polygon
+      Color: 255; 255; 0 # Sarı
+      Enabled: false # Varsayılan olarak kapalı, polygon_publisher_node kullanılıyorsa açın
+      Name: Polygon (from /coverage_polygon)
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /coverage_polygon
+      Value: false
+    - Class: rviz/LaserScan
+      Enabled: true
+      Name: LaserScan
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /scan
+      Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds: {Max Value: 10, Min Value: -10, Value: true}
+      Axis: Z
+      Channel Name: intensity
+      Color: 255; 255; 255
+      Color Transformer: Intensity
+      Decay Time: 0
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 4096
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 2
+      Size (m): 0.01
+      Style: Flat Squares # veya Points
+      Use Fixed Frame: true
+      Use Rainbow: true
+      Value: true
+    - Alpha: 0.7 # Global Costmap
+      Class: rviz/Map
+      Color Scheme: costmap
+      Draw Behind: true # Haritanın arkasında çizilsin
+      Enabled: true
+      Name: Global Costmap
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /move_base/global_costmap/costmap # standart konu
+      Use Timestamp: false
+      Value: true
+    - Alpha: 0.7 # Local Costmap
+      Class: rviz/Map
+      Color Scheme: costmap
+      Draw Behind: false # Diğer her şeyin üzerinde
+      Enabled: true
+      Name: Local Costmap
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /move_base/local_costmap/costmap # standart konu
+      Use Timestamp: false
+      Value: true
+  Enabled: true
+  Global Options:
+    Background Color: 48; 48; 48
+    Fixed Frame: map
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz/Interact
+      Hide Inactive Objects: true
+    - Class: rviz/MoveCamera
+    - Class: rviz/Select
+    - Class: rviz/FocusCamera
+    - Class: rviz/Measure
+    - Class: rviz/SetInitialPose
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /initialpose
+    - Class: rviz/SetGoal
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /move_base_simple/goal
+    - Class: rviz/PublishPoint # Opsiyonel polygon_publisher_node için
+      Single click: true
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /clicked_point
+  Value: true
+  Views:
+    Current:
+      Class: rviz/Orbit # veya XYOrbit
+      Distance: 6.0 # Biraz daha geniş bir görünüm için
+      Enable Stereo Rendering: {Stereo Eye Separation: 0.06, Stereo Focal Distance: 1, Swap Stereo Eyes: false, Value: false}
+      Focal Point: {X: 0, Y: 0, Z: 0} # Merkeze odaklan
+      Focal Shape Fixed Size: true
+      Focal Shape Size: 0.05
+      Invert Z Axis: false
+      Name: Current View
+      Near Clip Distance: 0.01
+      Pitch: 0.65 # Biraz daha yukarıdan bakış
+      Target Frame: <Fixed Frame>
+      Yaw: 4.7 # Haritanın genel görünümü için bir açı
+    Saved: ~
+Window Geometry:
+  Displays:
+    collapsed: false
+  Height: 1016
+  Hide Left Dock: false
+  Hide Right Dock: false
+  QMainWindow State: 000000ff00000000fd0000000400000000000001c2000003c0fc0200000007fb000000100044006900730070006c006100790073010000003d000003c0000000c400fffffffb0000000a00530065006c0065006300740069006f006e00000001030000009b0000006c00fffffffb000000180054006f006f006c002000500072006f00700065007200740069006500730200000192000000c80000008000fffffffb0000000a00560069006500770073020000004a000000a0000000a000fffffffb0000000a00540069006d0065010000000000000319000003c000ffffff0000046e00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Width: 1855
+  X: 65
+  Y: 24

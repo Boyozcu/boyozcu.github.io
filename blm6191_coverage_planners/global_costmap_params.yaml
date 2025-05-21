@@ -1,0 +1,16 @@
+global_costmap:
+  global_frame: map
+  robot_base_frame: base_footprint
+  update_frequency: 2.0
+  publish_frequency: 1.0 # Eskiden 0.5 idi, debug için 1.0 yapılabilir
+  static_map: true
+  transform_tolerance: 0.5
+
+  plugins:
+    - {name: static_layer,            type: "costmap_2d::StaticLayer"}
+    # - {name: obstacle_layer,          type: "costmap_2d::ObstacleLayer"} # VoxelLayer kullanılacaksa bu kapatılabilir
+    - {name: voxel_layer,             type: "costmap_2d::VoxelLayer", topic: "voxel_grid"} # Voxel eklemek için (opsiyonel)
+                                                                                           # Eğer voxel_grid konunuz yoksa bu satırı kaldırın
+                                                                                           # ve obstacle_layer'ı aktif edin.
+                                                                                           # Genellikle 2D için ObstacleLayer yeterlidir.
+    - {name: inflation_layer,         type: "costmap_2d::InflationLayer"}

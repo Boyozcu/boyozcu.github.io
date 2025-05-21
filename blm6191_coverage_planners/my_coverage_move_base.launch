@@ -1,0 +1,63 @@
+<launch>
+  <arg name="model" default="$(env TURTLEBOT3_MODEL)"/>
+  <arg name="base_global_planner" default="blm6191_coverage_planners/FullCoveragePlanner"/>
+  <arg name="base_local_planner" default="blm6191_coverage_planners/PurePursuitLocalPlanner"/>
+
+  <!-- Argümanların varsayılanları betikteki yeni CFG değerleriyle eşleşiyor -->
+  <arg name="robot_radius_val" default="0.20"/>
+  <arg name="sweep_spacing_factor_val" default="0.75"/>
+  <arg name="path_point_distance_val" default="0.05"/> <!-- DEĞİŞTİ -->
+  <arg name="use_param_poly_val" default="true"/>
+  <arg name="p1x_val" default="-3.5"/> <arg name="p1y_val" default="2.2"/> <!-- DEĞİŞTİ (Poligon) -->
+  <arg name="p2x_val" default="3.5"/>  <arg name="p2y_val" default="2.2"/> <!-- DEĞİŞTİ (Poligon) -->
+  <arg name="p3x_val" default="3.5"/>  <arg name="p3y_val" default="-2.0"/> <!-- DEĞİŞTİ (Poligon) -->
+  <arg name="p4x_val" default="-3.5"/> <arg name="p4y_val" default="-2.0"/> <!-- DEĞİŞTİ (Poligon) -->
+
+  <arg name="lookahead_distance_val" default="0.9"/> <!-- DEĞİŞTİ -->
+  <arg name="linear_vel_val" default="0.10"/>    <!-- DEĞİŞTİ -->
+  <arg name="max_angular_vel_val" default="0.55"/>  <!-- DEĞİŞTİ -->
+  <arg name="goal_dist_tolerance_val" default="0.15"/>
+  <arg name="controller_frequency_val" default="10.0"/>
+
+  <arg name="launch_polygon_publisher_val" default="false"/>
+  <arg name="launch_polygon_visualizer_val" default="true"/> 
+
+
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <param name="base_global_planner" value="$(arg base_global_planner)"/>
+    <param name="base_local_planner" value="$(arg base_local_planner)"/>
+    <param name="controller_frequency" value="$(arg controller_frequency_val)"/>
+
+    <rosparam file="$(find blm6191_coverage_planners)/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find blm6191_coverage_planners)/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find blm6191_coverage_planners)/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find blm6191_coverage_planners)/global_costmap_params.yaml" command="load" />
+    
+    <rosparam file="$(find blm6191_coverage_planners)/planner_params.yaml" command="load" />
+
+    <!-- FullCoveragePlanner ROS Parametreleri -->
+    <param name="FullCoveragePlanner/robot_radius" value="$(arg robot_radius_val)"/>
+    <param name="FullCoveragePlanner/sweep_spacing_factor" value="$(arg sweep_spacing_factor_val)"/>
+    <param name="FullCoveragePlanner/path_point_distance" value="$(arg path_point_distance_val)"/>
+    <param name="FullCoveragePlanner/use_param_poly" value="$(arg use_param_poly_val)"/>
+    <param name="FullCoveragePlanner/p1_x" value="$(arg p1x_val)"/>
+    <param name="FullCoveragePlanner/p1_y" value="$(arg p1y_val)"/>
+    <param name="FullCoveragePlanner/p2_x" value="$(arg p2x_val)"/>
+    <param name="FullCoveragePlanner/p2_y" value="$(arg p2y_val)"/>
+    <param name="FullCoveragePlanner/p3_x" value="$(arg p3x_val)"/>
+    <param name="FullCoveragePlanner/p3_y" value="$(arg p3y_val)"/>
+    <param name="FullCoveragePlanner/p4_x" value="$(arg p4x_val)"/>
+    <param name="FullCoveragePlanner/p4_y" value="$(arg p4y_val)"/>
+    <param name="FullCoveragePlanner/frame_id" value="map"/>
+
+    <!-- PurePursuitLocalPlanner ROS Parametreleri -->
+    <param name="PurePursuitLocalPlanner/lookahead_distance" value="$(arg lookahead_distance_val)"/>
+    <param name="PurePursuitLocalPlanner/linear_vel" value="$(arg linear_vel_val)"/>
+    <param name="PurePursuitLocalPlanner/max_angular_vel" value="$(arg max_angular_vel_val)"/>
+    <param name="PurePursuitLocalPlanner/goal_dist_tolerance" value="$(arg goal_dist_tolerance_val)"/>
+    <param name="PurePursuitLocalPlanner/robot_base_frame" value="base_footprint"/>
+
+    <remap from="cmd_vel" to="/cmd_vel"/>
+    <remap from="odom" to="/odom"/>
+  </node>
+</launch>

@@ -1,0 +1,581 @@
+[2025-05-20 22:08:09] SLAM (turtlebot3_slam turtlebot3_slam.launch - Yöntem: gmapping) başlatılıyor...
+[2025-05-20 22:08:09] SLAM PID: 17559. Başlaması için 8 sn bekleniyor...
+xacro: in-order processing became default in ROS Melodic. You can drop the option.
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom (parent map) at time 8.842000 according to authority unknown_publisher
+         at line 279 in /tmp/binarydeb/ros-noetic-tf2-0.7.8/src/buffer_core.cpp
+[0m[INFO] [1747768091.357014562, 8.862000000]: Laser is mounted upwards.[0m
+ -maxUrange 25 -maxUrange 29.99 -sigma     0.05 -kernelSize 1 -lstep 0.05 -lobsGain 3 -astep 0.05
+ -srr 0.1 -srt 0.2 -str 0.1 -stt 0.2
+ -linearUpdate 1 -angularUpdate 0.2 -resampleThreshold 0.5
+ -xmin -10 -xmax 10 -ymin -10 -ymax 10 -delta 0.1 -particles 80
+[0m[INFO] [1747768091.361306488, 8.865000000]: Initialization complete[0m
+update frame 0
+update ld=0 ad=0
+Laser Pose= -0.0483904 -0.0407542 -2.44157
+m_count 0
+Registering First Scan
+update frame 5
+update ld=1.59118e-07 ad=1.32019e-06
+Laser Pose= -0.0483904 -0.040754 -2.44157
+m_count 1
+Average Scan Matching Score=355.941
+neff= 80
+Registering Scans:Done
+update frame 10
+update ld=1.60023e-07 ad=1.3277e-06
+Laser Pose= -0.0483904 -0.0407539 -2.44157
+m_count 2
+Average Scan Matching Score=356.377
+neff= 80
+Registering Scans:Done
+update frame 16
+update ld=1.90413e-07 ad=1.57984e-06
+Laser Pose= -0.0483905 -0.0407537 -2.44156
+m_count 3
+Average Scan Matching Score=356.436
+neff= 80
+Registering Scans:Done
+update frame 21
+update ld=1.59707e-07 ad=1.32507e-06
+Laser Pose= -0.0483905 -0.0407535 -2.44156
+m_count 4
+Average Scan Matching Score=356.299
+neff= 80
+Registering Scans:Done
+update frame 26
+update ld=1.59514e-07 ad=1.32347e-06
+Laser Pose= -0.0483905 -0.0407534 -2.44156
+m_count 5
+Average Scan Matching Score=356.531
+neff= 80
+Registering Scans:Done
+update frame 32
+update ld=1.89747e-07 ad=1.57431e-06
+Laser Pose= -0.0483905 -0.0407532 -2.44156
+m_count 6
+Average Scan Matching Score=356.456
+neff= 80
+Registering Scans:Done
+update frame 38
+update ld=1.90644e-07 ad=1.58175e-06
+Laser Pose= -0.0483906 -0.040753 -2.44156
+m_count 7
+Average Scan Matching Score=356.425
+neff= 80
+Registering Scans:Done
+[2025-05-20 22:08:17] RVIZ PID: 17651. Başlaması için 5 sn bekleniyor...
+update frame 43
+update ld=1.6067e-07 ad=1.33306e-06
+Laser Pose= -0.0483906 -0.0407528 -2.44156
+m_count 8
+Average Scan Matching Score=356.438
+neff= 80
+Registering Scans:Done
+update frame 49
+update ld=1.91086e-07 ad=1.58542e-06
+Laser Pose= -0.0483906 -0.0407526 -2.44156
+m_count 9
+Average Scan Matching Score=356.457
+neff= 80
+Registering Scans:Done
+update frame 55
+update ld=1.90937e-07 ad=1.58418e-06
+Laser Pose= -0.0483907 -0.0407524 -2.44155
+m_count 10
+Average Scan Matching Score=356.742
+neff= 80
+Registering Scans:Done
+update frame 60
+update ld=1.59608e-07 ad=1.32425e-06
+Laser Pose= -0.0483907 -0.0407523 -2.44155
+m_count 11
+Average Scan Matching Score=356.575
+neff= 80
+Registering Scans:Done
+update frame 66
+update ld=1.91543e-07 ad=1.58921e-06
+Laser Pose= -0.0483907 -0.0407521 -2.44155
+m_count 12
+Average Scan Matching Score=356.623
+neff= 80
+Registering Scans:Done
+[2025-05-20 22:08:22] Polygon Visualizer başlatılıyor...
+[2025-05-20 22:08:22] Polygon Visualizer PID: 17727. Başlaması için 2 sn bekleniyor...
+update frame 72
+update ld=1.90383e-07 ad=1.57958e-06
+Laser Pose= -0.0483907 -0.0407519 -2.44155
+m_count 13
+Average Scan Matching Score=356.566
+neff= 80
+Registering Scans:Done
+update frame 77
+update ld=1.61921e-07 ad=1.34343e-06
+Laser Pose= -0.0483908 -0.0407517 -2.44155
+m_count 14
+Average Scan Matching Score=356.581
+neff= 80
+Registering Scans:Done
+[2025-05-20 22:08:24] Navigasyon (move_base - my_coverage_move_base.launch) başlatılıyor...
+[2025-05-20 22:08:24] Move_base launch PID: 17784. Başlaması için 10 sn bekleniyor...
+update frame 83
+update ld=1.90719e-07 ad=1.58237e-06
+Laser Pose= -0.0483908 -0.0407516 -2.44155
+m_count 15
+Average Scan Matching Score=356.633
+neff= 80
+Registering Scans:Done
+update frame 88
+update ld=1.59954e-07 ad=1.32711e-06
+Laser Pose= -0.0483908 -0.0407514 -2.44155
+m_count 16
+Average Scan Matching Score=356.63
+neff= 80
+Registering Scans:Done
+[33m[WARN] [1747768106.616792404, 17.791000000]: Timed out waiting for transform from base_footprint to map to become available before running costmap, tf error: canTransform: target_frame map does not exist.. canTransform returned after 17.791 timeout was 0.1.[0m
+[33m[WARN] [1747768106.822331868, 17.860000000]: global_costmap: Pre-Hydro parameter "static_map" unused since "plugins" is provided[0m
+[33m[WARN] [1747768107.618212899, 18.205000000]: local_costmap: Pre-Hydro parameter "static_map" unused since "plugins" is provided[0m
+update frame 94
+update ld=1.90367e-07 ad=1.57944e-06
+Laser Pose= -0.0483908 -0.0407512 -2.44154
+m_count 17
+Average Scan Matching Score=356.81
+neff= 80
+Registering Scans:Done
+update frame 99
+update ld=1.5972e-07 ad=1.32517e-06
+Laser Pose= -0.0483909 -0.0407511 -2.44154
+m_count 18
+Average Scan Matching Score=356.658
+neff= 80
+Registering Scans:Done
+update frame 105
+update ld=1.91455e-07 ad=1.58847e-06
+Laser Pose= -0.0483909 -0.0407509 -2.44154
+m_count 19
+Average Scan Matching Score=356.826
+neff= 80
+Registering Scans:Done
+update frame 110
+update ld=1.60155e-07 ad=1.32878e-06
+Laser Pose= -0.0483909 -0.0407507 -2.44154
+m_count 20
+Average Scan Matching Score=356.742
+neff= 80
+Registering Scans:Done
+update frame 116
+update ld=1.90448e-07 ad=1.58011e-06
+Laser Pose= -0.0483909 -0.0407505 -2.44154
+m_count 21
+Average Scan Matching Score=356.706
+neff= 80
+Registering Scans:Done
+update frame 122
+update ld=1.9298e-07 ad=1.60111e-06
+Laser Pose= -0.048391 -0.0407503 -2.44154
+m_count 22
+Average Scan Matching Score=356.701
+neff= 80
+Registering Scans:Done
+update frame 128
+update ld=0.00105205 ad=0.000437906
+Laser Pose= -0.0475691 -0.0400936 -2.4411
+m_count 23
+Average Scan Matching Score=356.51
+neff= 80
+Registering Scans:Done
+[2025-05-20 22:08:34] #####################################################
+[2025-05-20 22:08:34] SİSTEM BAŞLATILDI. LÜTFEN AŞAĞIDAKİ ADIMLARI İZLEYİN:
+[2025-05-20 22:08:34] #####################################################
+update frame 133
+update ld=0.0482593 ad=0.0054431
+Laser Pose= -0.0107711 -0.00887233 -2.44336
+m_count 24
+Average Scan Matching Score=344.607
+neff= 79.9948
+Registering Scans:Done
+update frame 139
+update ld=0.0599162 ad=0.0121221
+Laser Pose= 0.0348446 0.0299753 -2.45549
+m_count 25
+Average Scan Matching Score=347.846
+neff= 79.9849
+Registering Scans:Done
+update frame 144
+update ld=0.0506953 ad=0.0146212
+Laser Pose= 0.0736947 0.0625433 -2.47011
+m_count 26
+Average Scan Matching Score=348.46
+neff= 79.9848
+Registering Scans:Done
+update frame 149
+update ld=0.051042 ad=0.0260494
+Laser Pose= 0.113011 0.0950921 -2.49616
+m_count 27
+Average Scan Matching Score=349.924
+neff= 79.9852
+Registering Scans:Done
+update frame 154
+update ld=0.0518135 ad=0.034675
+Laser Pose= 0.153586 0.127314 -2.53083
+m_count 28
+Average Scan Matching Score=351.571
+neff= 79.9852
+Registering Scans:Done
+update frame 159
+update ld=0.0502727 ad=0.0466978
+Laser Pose= 0.193692 0.157622 -2.57753
+m_count 29
+Average Scan Matching Score=348.458
+neff= 79.9849
+Registering Scans:Done
+update frame 164
+update ld=0.0509318 ad=0.0557325
+Laser Pose= 0.235545 0.186639 -2.63326
+m_count 30
+Average Scan Matching Score=351.49
+neff= 79.9849
+Registering Scans:Done
+update frame 169
+update ld=0.0516717 ad=0.068577
+Laser Pose= 0.279335 0.214057 -2.70184
+m_count 31
+Average Scan Matching Score=350.854
+neff= 79.9715
+Registering Scans:Done
+update frame 175
+update ld=0.0611281 ad=0.0948658
+Laser Pose= 0.333194 0.242936 -2.7967
+m_count 32
+Average Scan Matching Score=352.18
+neff= 79.9713
+Registering Scans:Done
+update frame 181
+update ld=0.0613328 ad=0.109447
+Laser Pose= 0.389555 0.267068 -2.90615
+m_count 33
+Average Scan Matching Score=350.41
+neff= 79.9658
+Registering Scans:Done
+update frame 187
+update ld=0.0619315 ad=0.123962
+Laser Pose= 0.448666 0.285432 -3.03011
+m_count 34
+Average Scan Matching Score=351.641
+neff= 79.9657
+Registering Scans:Done
+update frame 192
+update ld=0.0508488 ad=0.10756
+Laser Pose= 0.498556 0.295143 -3.13767
+m_count 35
+Average Scan Matching Score=352.801
+neff= 79.9627
+Registering Scans:Done
+update frame 197
+update ld=0.0523791 ad=0.109879
+Laser Pose= 0.550732 0.29944 3.03563
+m_count 36
+Average Scan Matching Score=352.661
+neff= 79.9624
+Registering Scans:Done
+update frame 203
+update ld=0.0615304 ad=0.125576
+Laser Pose= 0.612167 0.29699 2.91006
+m_count 37
+Average Scan Matching Score=351.126
+neff= 79.9624
+Registering Scans:Done
+update frame 209
+update ld=0.0627769 ad=0.117162
+Laser Pose= 0.673968 0.286213 2.7929
+m_count 38
+Average Scan Matching Score=353.711
+neff= 79.9623
+Registering Scans:Done
+update frame 215
+update ld=0.0601506 ad=0.101098
+Laser Pose= 0.731509 0.26881 2.6918
+m_count 39
+Average Scan Matching Score=353.39
+neff= 79.9623
+Registering Scans:Done
+update frame 220
+update ld=0.0505682 ad=0.0712571
+Laser Pose= 0.778129 0.249261 2.62054
+m_count 40
+Average Scan Matching Score=351.789
+neff= 79.9622
+Registering Scans:Done
+update frame 225
+update ld=0.0507268 ad=0.0602587
+Laser Pose= 0.823198 0.226001 2.56028
+m_count 41
+Average Scan Matching Score=352.774
+neff= 79.9627
+Registering Scans:Done
+update frame 231
+update ld=0.0600856 ad=0.0553898
+Laser Pose= 0.874347 0.194498 2.50489
+m_count 42
+Average Scan Matching Score=352.927
+neff= 79.9626
+Registering Scans:Done
+update frame 236
+update ld=0.0504613 ad=0.0354363
+Laser Pose= 0.915693 0.165576 2.46946
+m_count 43
+Average Scan Matching Score=353.61
+neff= 79.9628
+Registering Scans:Done
+update frame 241
+update ld=0.0508415 ad=0.0244064
+Laser Pose= 0.956019 0.134618 2.44505
+m_count 44
+Average Scan Matching Score=352.461
+neff= 79.9627
+Registering Scans:Done
+update frame 246
+update ld=0.050648 ad=0.0165764
+Laser Pose= 0.995249 0.102586 2.42847
+m_count 45
+Average Scan Matching Score=353.883
+neff= 79.9627
+Registering Scans:Done
+update frame 251
+update ld=0.05069 ad=0.00849971
+Laser Pose= 1.03378 0.0696506 2.41997
+m_count 46
+Average Scan Matching Score=353.431
+neff= 79.9627
+Registering Scans:Done
+update frame 257
+update ld=0.0600728 ad=0.00249572
+Laser Pose= 1.07889 0.029979 2.41823
+m_count 47
+Average Scan Matching Score=353.267
+neff= 79.9628
+Registering Scans:Done
+update frame 262
+update ld=0.0498919 ad=0.00426656
+Laser Pose= 1.11617 -0.00317954 2.42249
+m_count 48
+Average Scan Matching Score=353.607
+neff= 79.9628
+Registering Scans:Done
+update frame 267
+update ld=0.0500576 ad=0.00878964
+Laser Pose= 1.1536 -0.0364157 2.43128
+m_count 49
+Average Scan Matching Score=354.247
+neff= 79.9627
+Registering Scans:Done
+update frame 272
+update ld=0.05111 ad=0.0136679
+Laser Pose= 1.19201 -0.070136 2.44495
+m_count 50
+[2025-05-20 22:09:04] #####################################################
+[2025-05-20 22:09:04] Temizleme sinyali alındı, süreçler sonlandırılıyor...
+Average Scan Matching Score=353.474
+neff= 79.9627
+Registering Scans:Done
+[2025-05-20 22:09:04] gazebo (PID: 17255) sonlandırılıyor (SIGINT)...
+[2025-05-20 22:09:04] slam (PID: 17559) sonlandırılıyor (SIGINT)...
+[2025-05-20 22:09:04] rviz (PID: 17651) sonlandırılıyor (SIGINT)...
+virtual GMapping::GridSlamProcessor::~GridSlamProcessor(): Start
+virtual GMapping::GridSlamProcessor::~GridSlamProcessor(): Deleting tree
+[2025-05-20 22:09:04] move_base (PID: 17784) sonlandırılıyor (SIGINT)...
+[2025-05-20 22:09:04] poly_viz (PID: 17727) sonlandırılıyor (SIGINT)...
+... logging to /home/boyozcu/.ros/log/b8e843b4-35ad-11f0-84f0-afcb645201fc/roslaunch-boyozcu-VirtualBox-17559.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;/home/boyozcu/robotlar_ws/src/turtlebot3/turtlebot3_slam/launch/turtlebot3_slam.launch
+[1mstarted roslaunch server http://boyozcu-VirtualBox:45101/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /robot_description: <?xml version="1....
+ * /robot_state_publisher/publish_frequency: 50.0
+ * /robot_state_publisher/tf_prefix: 
+ * /rosdistro: noetic
+ * /rosversion: 1.17.0
+ * /turtlebot3_slam_gmapping/angularUpdate: 0.2
+ * /turtlebot3_slam_gmapping/astep: 0.05
+ * /turtlebot3_slam_gmapping/base_frame: base_footprint
+ * /turtlebot3_slam_gmapping/delta: 0.1
+ * /turtlebot3_slam_gmapping/iterations: 5
+ * /turtlebot3_slam_gmapping/kernelSize: 1
+ * /turtlebot3_slam_gmapping/lasamplerange: 0.005
+ * /turtlebot3_slam_gmapping/lasamplestep: 0.005
+ * /turtlebot3_slam_gmapping/linearUpdate: 1.0
+ * /turtlebot3_slam_gmapping/llsamplerange: 0.01
+ * /turtlebot3_slam_gmapping/llsamplestep: 0.01
+ * /turtlebot3_slam_gmapping/lsigma: 0.075
+ * /turtlebot3_slam_gmapping/lskip: 0
+ * /turtlebot3_slam_gmapping/lstep: 0.05
+ * /turtlebot3_slam_gmapping/map_frame: map
+ * /turtlebot3_slam_gmapping/map_update_interval: 2.0
+ * /turtlebot3_slam_gmapping/maxUrange: 25.0
+ * /turtlebot3_slam_gmapping/minimumScore: 50
+ * /turtlebot3_slam_gmapping/odom_frame: odom
+ * /turtlebot3_slam_gmapping/ogain: 3.0
+ * /turtlebot3_slam_gmapping/particles: 80
+ * /turtlebot3_slam_gmapping/resampleThreshold: 0.5
+ * /turtlebot3_slam_gmapping/sigma: 0.05
+ * /turtlebot3_slam_gmapping/srr: 0.1
+ * /turtlebot3_slam_gmapping/srt: 0.2
+ * /turtlebot3_slam_gmapping/str: 0.1
+ * /turtlebot3_slam_gmapping/stt: 0.2
+ * /turtlebot3_slam_gmapping/temporalUpdate: 0.5
+ * /turtlebot3_slam_gmapping/xmax: 10.0
+ * /turtlebot3_slam_gmapping/xmin: -10.0
+ * /turtlebot3_slam_gmapping/ymax: 10.0
+ * /turtlebot3_slam_gmapping/ymin: -10.0
+
+NODES
+  /
+    robot_state_publisher (robot_state_publisher/robot_state_publisher)
+    turtlebot3_slam_gmapping (gmapping/slam_gmapping)
+
+[1mROS_MASTER_URI=http://localhost:11311[0m
+]2;/home/boyozcu/robotlar_ws/src/turtlebot3/turtlebot3_slam/launch/turtlebot3_slam.launch http://localhost:11311
+[1mprocess[robot_state_publisher-1]: started with pid [17595][0m
+[1mprocess[turtlebot3_slam_gmapping-2]: started with pid [17596][0m
+[turtlebot3_slam_gmapping-2] killing on exit
+[robot_state_publisher-1] killing on exit
+shutting down processing monitor...
+... shutting down processing monitor complete
+[1mdone[0m
+[INFO] [1747768103.764610, 0.000000]: Polygon Visualizer (params from private ns): P1(-3.50,2.20), P2(3.50,2.20), P3(3.50,-2.00), P4(-3.50,-2.00) in frame 'map'
+[INFO] [1747768104.918212, 16.921000]: Coverage area marker published to /coverage_area_marker.
+[0m[INFO] [1747768106.829652084, 17.860000000]: global_costmap: Using plugin "static_layer"[0m
+[0m[INFO] [1747768106.846372931, 17.868000000]: Requesting the map...[0m
+[0m[INFO] [1747768107.026873046, 17.975000000]: Resizing costmap to 352 X 320 at 0.100000 m/pix[0m
+[0m[INFO] [1747768107.320069628, 18.074000000]: Received a 352 X 320 map at 0.100000 m/pix[0m
+[0m[INFO] [1747768107.372085499, 18.081000000]: global_costmap: Using plugin "voxel_layer"[0m
+[0m[INFO] [1747768107.384028581, 18.090000000]:     Subscribed to Topics: [0m
+[0m[INFO] [1747768107.430205541, 18.128000000]: global_costmap: Using plugin "inflation_layer"[0m
+[0m[INFO] [1747768107.597912632, 18.198000000]: [FullCoveragePlanner] FullCoveragePlanner initialized.[0m
+[0m[INFO] [1747768107.623245125, 18.206000000]: local_costmap: Using plugin "obstacle_layer"[0m
+[0m[INFO] [1747768107.644709430, 18.218000000]:     Subscribed to Topics: [0m
+[0m[INFO] [1747768107.671404221, 18.236000000]: local_costmap: Using plugin "inflation_layer"[0m
+[0m[INFO] [1747768107.751860887, 18.296000000]: Created local_planner blm6191_coverage_planners/PurePursuitLocalPlanner[0m
+[0m[INFO] [1747768107.757518399, 18.300000000]: [PurePursuitLocalPlanner] Using hardcoded global frame for Pure Pursuit: 'map'[0m
+[0m[INFO] [1747768107.760941359, 18.300000000]: [PurePursuitLocalPlanner] PurePursuitLocalPlanner initialized. Lookahead: 0.90, LinVel: 0.10, MaxAngVel: 0.55, GoalTol: 0.15, BaseFrame: base_footprint, GlobalFrame: map[0m
+[0m[INFO] [1747768108.678625012, 18.699000000]: Recovery behavior will clear layer 'obstacles'[0m
+[0m[INFO] [1747768108.686959375, 18.699000000]: Recovery behavior will clear layer 'obstacles'[0m
+[0m[INFO] [1747768108.854895127, 18.771000000]: odom received![0m
+[0m[INFO] [1747768113.219948432, 21.452000000]: [FCP::makePlan] Generating Boustrophedon coverage plan...[0m
+[0m[INFO] [1747768113.220380626, 21.454000000]: [FCP::GenPath] Starting Boustrophedon. Polygon size: 4[0m
+[0m[INFO] [1747768113.221698247, 21.455000000]: [FCP::GenPath] Final path generated with 914 points.[0m
+[0m[INFO] [1747768113.223618991, 21.457000000]: [FCP::makePlan] Plan generated with 914 points.[0m
+[0m[INFO] [1747768113.629706051, 21.557000000]: PurePursuitLocalPlanner: Received new plan with 914 points. First point frame: 'map', Last point frame: 'map'. Expected global frame for planner: 'map'[0m
+[0m[INFO] [1747768138.561374394, 33.331000000]: Resizing costmap to 480 X 320 at 0.100000 m/pix[0m
+... logging to /home/boyozcu/.ros/log/b8e843b4-35ad-11f0-84f0-afcb645201fc/roslaunch-boyozcu-VirtualBox-17784.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;/home/boyozcu/robotlar_ws/src/blm6191_coverage_planners/my_coverage_move_base.launch
+[1mstarted roslaunch server http://boyozcu-VirtualBox:33779/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /move_base/FullCoveragePlanner/frame_id: map
+ * /move_base/FullCoveragePlanner/p1_x: -3.5
+ * /move_base/FullCoveragePlanner/p1_y: 2.2
+ * /move_base/FullCoveragePlanner/p2_x: 3.5
+ * /move_base/FullCoveragePlanner/p2_y: 2.2
+ * /move_base/FullCoveragePlanner/p3_x: 3.5
+ * /move_base/FullCoveragePlanner/p3_y: -2.0
+ * /move_base/FullCoveragePlanner/p4_x: -3.5
+ * /move_base/FullCoveragePlanner/p4_y: -2.0
+ * /move_base/FullCoveragePlanner/path_point_distance: 0.05
+ * /move_base/FullCoveragePlanner/robot_radius: 0.2
+ * /move_base/FullCoveragePlanner/sweep_spacing_factor: 0.75
+ * /move_base/FullCoveragePlanner/use_param_poly: True
+ * /move_base/PurePursuitLocalPlanner/goal_dist_tolerance: 0.15
+ * /move_base/PurePursuitLocalPlanner/linear_vel: 0.1
+ * /move_base/PurePursuitLocalPlanner/lookahead_distance: 0.9
+ * /move_base/PurePursuitLocalPlanner/max_angular_vel: 0.55
+ * /move_base/PurePursuitLocalPlanner/robot_base_frame: base_footprint
+ * /move_base/base_global_planner: blm6191_coverage_...
+ * /move_base/base_local_planner: blm6191_coverage_...
+ * /move_base/controller_frequency: 10.0
+ * /move_base/global_costmap/cost_scaling_factor: 10.0
+ * /move_base/global_costmap/footprint: [[-0.07, -0.07], ...
+ * /move_base/global_costmap/global_frame: map
+ * /move_base/global_costmap/inflation_radius: 0.35
+ * /move_base/global_costmap/laser_scan_sensor/clearing: True
+ * /move_base/global_costmap/laser_scan_sensor/data_type: LaserScan
+ * /move_base/global_costmap/laser_scan_sensor/marking: True
+ * /move_base/global_costmap/laser_scan_sensor/sensor_frame: base_scan
+ * /move_base/global_costmap/laser_scan_sensor/topic: scan
+ * /move_base/global_costmap/observation_sources: laser_scan_sensor
+ * /move_base/global_costmap/obstacle_range: 2.5
+ * /move_base/global_costmap/plugins: [{'name': 'static...
+ * /move_base/global_costmap/publish_frequency: 1.0
+ * /move_base/global_costmap/raytrace_range: 3.0
+ * /move_base/global_costmap/robot_base_frame: base_footprint
+ * /move_base/global_costmap/static_map: True
+ * /move_base/global_costmap/transform_tolerance: 0.5
+ * /move_base/global_costmap/update_frequency: 2.0
+ * /move_base/local_costmap/cost_scaling_factor: 10.0
+ * /move_base/local_costmap/footprint: [[-0.07, -0.07], ...
+ * /move_base/local_costmap/global_frame: map
+ * /move_base/local_costmap/height: 3.0
+ * /move_base/local_costmap/inflation_radius: 0.35
+ * /move_base/local_costmap/laser_scan_sensor/clearing: True
+ * /move_base/local_costmap/laser_scan_sensor/data_type: LaserScan
+ * /move_base/local_costmap/laser_scan_sensor/marking: True
+ * /move_base/local_costmap/laser_scan_sensor/sensor_frame: base_scan
+ * /move_base/local_costmap/laser_scan_sensor/topic: scan
+ * /move_base/local_costmap/observation_sources: laser_scan_sensor
+ * /move_base/local_costmap/obstacle_range: 2.5
+ * /move_base/local_costmap/plugins: [{'name': 'obstac...
+ * /move_base/local_costmap/publish_frequency: 2.0
+ * /move_base/local_costmap/raytrace_range: 3.0
+ * /move_base/local_costmap/resolution: 0.05
+ * /move_base/local_costmap/robot_base_frame: base_footprint
+ * /move_base/local_costmap/rolling_window: True
+ * /move_base/local_costmap/static_map: False
+ * /move_base/local_costmap/transform_tolerance: 0.5
+ * /move_base/local_costmap/update_frequency: 5.0
+ * /move_base/local_costmap/width: 3.0
+ * /rosdistro: noetic
+ * /rosversion: 1.17.0
+
+NODES
+  /
+    move_base (move_base/move_base)
+
+[1mROS_MASTER_URI=http://localhost:11311[0m
+]2;/home/boyozcu/robotlar_ws/src/blm6191_coverage_planners/my_coverage_move_base.launch http://localhost:11311
+[1mprocess[move_base-1]: started with pid [17815][0m
+[move_base-1] killing on exit
+shutting down processing monitor...
+... shutting down processing monitor complete
+[1mdone[0m
+[0m[INFO] [1747768098.388231610]: rviz version 1.14.26[0m
+[0m[INFO] [1747768098.388261649]: compiled against Qt version 5.12.8[0m
+[0m[INFO] [1747768098.388267535]: compiled against OGRE version 1.9.0 (Ghadamon)[0m
+[0m[INFO] [1747768098.429279285]: Forcing OpenGl version 0.[0m
+[0m[INFO] [1747768098.840226974, 13.724000000]: Stereo is NOT SUPPORTED[0m
+[0m[INFO] [1747768098.840764260, 13.724000000]: OpenGL device: llvmpipe (LLVM 12.0.0, 128 bits)[0m
+[0m[INFO] [1747768098.840879396, 13.724000000]: OpenGl version: 3,1 (GLSL 1,4).[0m
+[0m[INFO] [1747768099.919605136, 14.352000000]: Creating 1 swatches[0m
+[0m[INFO] [1747768108.937922709, 18.828000000]: Creating 1 swatches[0m
+[0m[INFO] [1747768108.938640835, 18.831000000]: Creating 1 swatches[0m
+[0m[INFO] [1747768113.217502225, 21.452000000]: Setting goal: Frame:map, Position(3,222, 1,934, 0,000), Orientation(0,000, 0,000, 0,602, 0,798) = Angle: 1,292
+[0m
+[0m[INFO] [1747768138.698330584, 33.384000000]: Creating 1 swatches[0m
+[0m[INFO] [1747768140.550556930, 34.252000000]: Creating 1 swatches[0m
+[2025-05-20 22:09:06] gazebo (PID: 17255) hala çalışıyor, SIGKILL gönderiliyor...
+[2025-05-20 22:09:07] gazebo sonlandırıldı (veya zaten kapalıydı).
+[2025-05-20 22:09:07] slam sonlandırıldı (veya zaten kapalıydı).
+[2025-05-20 22:09:07] rviz sonlandırıldı (veya zaten kapalıydı).
+[2025-05-20 22:09:07] move_base sonlandırıldı (veya zaten kapalıydı).
+[2025-05-20 22:09:07] poly_viz sonlandırıldı (veya zaten kapalıydı).
+[2025-05-20 22:09:07] Temizleme tamamlandı. Log dosyası: /home/boyozcu/robotlar_ws/src/blm6191_coverage_planners/logs/run_log_20250520_220748.txt

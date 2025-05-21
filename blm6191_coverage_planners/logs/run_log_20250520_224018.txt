@@ -1,0 +1,1377 @@
+=====================================================
+[2025-05-20 22:40:18] KAPSAMA PLANLAYICI ÖDEV SCRIPT'İ BAŞLATILIYOR
+[2025-05-20 22:40:18] ROS Dağıtımı: noetic
+[2025-05-20 22:40:18] TurtleBot3 Modeli: waffle
+[2025-05-20 22:40:18] Çalışma Alanı: /home/boyozcu/robotlar_ws
+[2025-05-20 22:40:18] Otomatik Poligon: P1(-3.5,2.2), P2(3.5,2.2), P3(3.5,-2.0), P4(-3.5,-2.0)
+[2025-05-20 22:40:18] Log Dosyası: /home/boyozcu/robotlar_ws/src/blm6191_coverage_planners/logs/run_log_20250520_224018.txt
+[2025-05-20 22:40:18] =====================================================
+[2025-05-20 22:40:19] Mevcut roscore çalışıyor. PID: 19370
+[2025-05-20 22:40:19] Gazebo (turtlebot3_gazebo turtlebot3_willowgarage.launch) başlatılıyor...
+[2025-05-20 22:40:19] Gazebo PID: 19482. Yüklenmesi için 15 sn bekleniyor...
+xacro: in-order processing became default in ROS Melodic. You can drop the option.
+[2025-05-20 22:40:34] SLAM (turtlebot3_slam turtlebot3_slam.launch - Yöntem: gmapping) başlatılıyor...
+[2025-05-20 22:40:34] SLAM PID: 19784. Başlaması için 8 sn bekleniyor...
+xacro: in-order processing became default in ROS Melodic. You can drop the option.
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom (parent map) at time 7.572000 according to authority unknown_publisher
+         at line 279 in /tmp/binarydeb/ros-noetic-tf2-0.7.8/src/buffer_core.cpp
+[0m[INFO] [1747770036.123720572, 7.640000000]: Laser is mounted upwards.[0m
+ -maxUrange 25 -maxUrange 29.99 -sigma     0.05 -kernelSize 1 -lstep 0.05 -lobsGain 3 -astep 0.05
+ -srr 0.1 -srt 0.2 -str 0.1 -stt 0.2
+ -linearUpdate 1 -angularUpdate 0.2 -resampleThreshold 0.5
+ -xmin -10 -xmax 10 -ymin -10 -ymax 10 -delta 0.1 -particles 80
+[0m[INFO] [1747770036.126515567, 7.644000000]: Initialization complete[0m
+update frame 0
+update ld=0 ad=0
+Laser Pose= -0.0483903 -0.0407546 -2.44157
+m_count 0
+Registering First Scan
+update frame 5
+update ld=1.56149e-07 ad=1.29556e-06
+Laser Pose= -0.0483904 -0.0407544 -2.44157
+m_count 1
+Average Scan Matching Score=355.669
+neff= 80
+Registering Scans:Done
+update frame 10
+update ld=1.63625e-07 ad=1.35758e-06
+Laser Pose= -0.0483904 -0.0407543 -2.44157
+m_count 2
+Average Scan Matching Score=356.434
+neff= 80
+Registering Scans:Done
+update frame 15
+update ld=1.59315e-07 ad=1.32182e-06
+Laser Pose= -0.0483904 -0.0407541 -2.44157
+m_count 3
+Average Scan Matching Score=356.443
+neff= 80
+Registering Scans:Done
+update frame 20
+update ld=1.59784e-07 ad=1.32571e-06
+Laser Pose= -0.0483904 -0.040754 -2.44157
+m_count 4
+Average Scan Matching Score=356.389
+neff= 80
+Registering Scans:Done
+update frame 25
+update ld=1.59043e-07 ad=1.31956e-06
+Laser Pose= -0.0483905 -0.0407538 -2.44157
+m_count 5
+Average Scan Matching Score=356.563
+neff= 80
+Registering Scans:Done
+update frame 31
+update ld=1.92792e-07 ad=1.59957e-06
+Laser Pose= -0.0483905 -0.0407536 -2.44156
+m_count 6
+Average Scan Matching Score=356.548
+neff= 80
+Registering Scans:Done
+update frame 36
+update ld=1.6295e-07 ad=1.35198e-06
+Laser Pose= -0.0483905 -0.0407535 -2.44156
+m_count 7
+Average Scan Matching Score=356.463
+neff= 80
+Registering Scans:Done
+[2025-05-20 22:40:42] RVIZ (/home/boyozcu/robotlar_ws/src/blm6191_coverage_planners/coverage_assignment.rviz ile) başlatılıyor...
+[2025-05-20 22:40:42] RVIZ PID: 19877. Başlaması için 5 sn bekleniyor...
+update frame 41
+update ld=1.59851e-07 ad=1.32627e-06
+Laser Pose= -0.0483905 -0.0407533 -2.44156
+m_count 8
+Average Scan Matching Score=356.53
+neff= 80
+Registering Scans:Done
+update frame 47
+update ld=1.90471e-07 ad=1.58031e-06
+Laser Pose= -0.0483906 -0.0407531 -2.44156
+m_count 9
+Average Scan Matching Score=356.615
+neff= 80
+Registering Scans:Done
+update frame 52
+update ld=1.596e-07 ad=1.32419e-06
+Laser Pose= -0.0483906 -0.040753 -2.44156
+m_count 10
+Average Scan Matching Score=356.566
+neff= 80
+Registering Scans:Done
+update frame 58
+update ld=1.91655e-07 ad=1.59014e-06
+Laser Pose= -0.0483906 -0.0407528 -2.44156
+m_count 11
+Average Scan Matching Score=356.445
+neff= 80
+Registering Scans:Done
+update frame 63
+update ld=1.65156e-07 ad=1.37028e-06
+Laser Pose= -0.0483906 -0.0407526 -2.44156
+m_count 12
+[2025-05-20 22:40:47] Polygon Visualizer başlatılıyor...
+[2025-05-20 22:40:47] Polygon Visualizer PID: 19955. Başlaması için 2 sn bekleniyor...
+Average Scan Matching Score=356.603
+neff= 80
+Registering Scans:Done
+update frame 68
+update ld=1.59538e-07 ad=1.32366e-06
+Laser Pose= -0.0483907 -0.0407524 -2.44155
+m_count 13
+Average Scan Matching Score=356.761
+neff= 80
+Registering Scans:Done
+update frame 73
+update ld=1.63826e-07 ad=1.35924e-06
+Laser Pose= -0.0483907 -0.0407523 -2.44155
+m_count 14
+[2025-05-20 22:40:49] Navigasyon (move_base - my_coverage_move_base.launch) başlatılıyor...
+[2025-05-20 22:40:49] Move_base launch PID: 20001. Başlaması için 10 sn bekleniyor...
+Average Scan Matching Score=356.601
+neff= 80
+Registering Scans:Done
+update frame 78
+update ld=1.63369e-07 ad=1.35545e-06
+Laser Pose= -0.0483907 -0.0407521 -2.44155
+m_count 15
+Average Scan Matching Score=356.753
+neff= 80
+Registering Scans:Done
+update frame 83
+update ld=1.59789e-07 ad=1.32575e-06
+Laser Pose= -0.0483907 -0.040752 -2.44155
+m_count 16
+[33m[WARN] [1747770051.806277401, 16.177000000]: Timed out waiting for transform from base_footprint to map to become available before running costmap, tf error: canTransform: target_frame map does not exist.. canTransform returned after 16.177 timeout was 0.1.[0m
+Average Scan Matching Score=356.751
+neff= 80
+Registering Scans:Done
+[33m[WARN] [1747770052.131254921, 16.304000000]: global_costmap: Pre-Hydro parameter "static_map" unused since "plugins" is provided[0m
+update frame 88
+update ld=1.59617e-07 ad=1.32432e-06
+Laser Pose= -0.0483907 -0.0407518 -2.44155
+m_count 17
+[33m[WARN] [1747770053.073191627, 16.646000000]: local_costmap: Pre-Hydro parameter "static_map" unused since "plugins" is provided[0m
+Average Scan Matching Score=356.61
+neff= 80
+Registering Scans:Done
+update frame 93
+update ld=1.58629e-07 ad=1.31612e-06
+Laser Pose= -0.0483908 -0.0407516 -2.44155
+m_count 18
+Average Scan Matching Score=356.733
+neff= 80
+Registering Scans:Done
+update frame 98
+update ld=1.5989e-07 ad=1.32658e-06
+Laser Pose= -0.0483908 -0.0407515 -2.44155
+m_count 19
+Average Scan Matching Score=356.706
+neff= 80
+Registering Scans:Done
+update frame 103
+update ld=1.59098e-07 ad=1.32001e-06
+Laser Pose= -0.0483908 -0.0407513 -2.44155
+m_count 20
+Average Scan Matching Score=356.833
+neff= 80
+Registering Scans:Done
+update frame 109
+update ld=1.90407e-07 ad=1.57977e-06
+Laser Pose= -0.0483908 -0.0407511 -2.44154
+m_count 21
+Average Scan Matching Score=356.847
+neff= 80
+Registering Scans:Done
+update frame 115
+update ld=1.90735e-07 ad=1.5825e-06
+Laser Pose= -0.0483909 -0.040751 -2.44154
+m_count 22
+Average Scan Matching Score=356.812
+neff= 80
+Registering Scans:Done
+update frame 120
+update ld=0.0262951 ad=0.0447524
+Laser Pose= -0.0298925 -0.0220878 -2.48605
+m_count 23
+Average Scan Matching Score=340.752
+neff= 79.95
+Registering Scans:Done
+[2025-05-20 22:40:59] #####################################################
+[2025-05-20 22:40:59] SİSTEM BAŞLATILDI. LÜTFEN AŞAĞIDAKİ ADIMLARI İZLEYİN:
+[2025-05-20 22:40:59] 1. Robotu manuel olarak (teleop ile) gezdirerek harita oluşturun.
+[2025-05-20 22:40:59]    Yeni terminalde: source /home/boyozcu/robotlar_ws/devel/setup.bash && roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
+[2025-05-20 22:40:59] 2. RViz'de haritanın ve TF ağacının (map->odom->base_footprint) kurulduğunu gözlemleyin.
+[2025-05-20 22:40:59] 3. RViz'de kapsama alanı poligonunun (mavi çizgiler) doğru çizildiğini kontrol edin.
+[2025-05-20 22:40:59] 4. Harita yeterli olduktan sonra, RViz'deki '2D Nav Goal' aracıyla bir hedef belirleyin.
+update frame 125
+update ld=0.0514401 ad=0.109505
+Laser Pose= 0.00820174 0.0124465 -2.59555
+m_count 24
+[2025-05-20 22:40:59] 5. Robotun kapsama yolunu oluşturup takip ettiğini gözlemleyin.
+[2025-05-20 22:40:59] #####################################################
+[2025-05-20 22:40:59] Ana süreçler çalışıyor. Sonlandırmak için bu terminalde Ctrl+C yapın.
+Average Scan Matching Score=345.768
+neff= 79.9783
+Registering Scans:Done
+update frame 130
+update ld=0.0536075 ad=0.114125
+Laser Pose= 0.0516834 0.0437484 -2.70968
+m_count 25
+Average Scan Matching Score=346.932
+neff= 79.9559
+Registering Scans:Done
+update frame 136
+update ld=0.060887 ad=0.125667
+Laser Pose= 0.10508 0.0729241 -2.83534
+m_count 26
+Average Scan Matching Score=348.305
+neff= 79.948
+Registering Scans:Done
+update frame 142
+update ld=0.0624315 ad=0.118554
+Laser Pose= 0.163346 0.0951639 -2.9539
+m_count 27
+Average Scan Matching Score=352.011
+neff= 79.9471
+Registering Scans:Done
+update frame 147
+update ld=0.0488428 ad=0.0423378
+Laser Pose= 0.211017 0.105636 -2.99624
+m_count 28
+Average Scan Matching Score=352.111
+neff= 79.9281
+Registering Scans:Done
+update frame 152
+update ld=0.0509611 ad=0.0327701
+Laser Pose= 0.261241 0.114268 -3.02901
+m_count 29
+Average Scan Matching Score=351.319
+neff= 79.9271
+Registering Scans:Done
+update frame 157
+update ld=0.0505545 ad=0.0374453
+Laser Pose= 0.311291 0.121367 -3.06645
+m_count 30
+Average Scan Matching Score=352.763
+neff= 79.9263
+Registering Scans:Done
+update frame 162
+update ld=0.0517688 ad=0.0426472
+Laser Pose= 0.362764 0.126867 -3.1091
+m_count 31
+Average Scan Matching Score=352.502
+neff= 79.925
+Registering Scans:Done
+update frame 167
+update ld=0.0507042 ad=0.0458649
+Laser Pose= 0.413351 0.130278 3.12822
+m_count 32
+Average Scan Matching Score=352.723
+neff= 79.9241
+Registering Scans:Done
+update frame 172
+update ld=0.0511186 ad=0.0521204
+Laser Pose= 0.464448 0.131585 3.0761
+m_count 33
+Average Scan Matching Score=352.101
+neff= 79.9235
+Registering Scans:Done
+update frame 177
+update ld=0.0510236 ad=0.0557316
+Laser Pose= 0.515453 0.130387 3.02037
+m_count 34
+Average Scan Matching Score=351.849
+neff= 79.9205
+Registering Scans:Done
+update frame 182
+update ld=0.0513247 ad=0.0616899
+Laser Pose= 0.566624 0.126511 2.95868
+m_count 35
+Average Scan Matching Score=353.275
+neff= 79.9192
+Registering Scans:Done
+update frame 187
+update ld=0.0518605 ad=0.0661536
+Laser Pose= 0.618009 0.119554 2.89253
+m_count 36
+Average Scan Matching Score=353.06
+neff= 79.9166
+Registering Scans:Done
+update frame 193
+update ld=0.0604223 ad=0.0846745
+Laser Pose= 0.677182 0.107414 2.80785
+m_count 37
+Average Scan Matching Score=353.037
+neff= 79.9169
+Registering Scans:Done
+update frame 198
+update ld=0.0523601 ad=0.0773913
+Laser Pose= 0.727518 0.0930374 2.73046
+m_count 38
+Average Scan Matching Score=352.484
+neff= 79.8857
+Registering Scans:Done
+update frame 203
+update ld=0.0512724 ad=0.0806816
+Laser Pose= 0.775653 0.0754087 2.64978
+m_count 39
+Average Scan Matching Score=353.068
+neff= 79.9146
+Registering Scans:Done
+update frame 207
+update ld=0.0524188 ad=0.086541
+Laser Pose= 0.823283 0.0535543 2.56324
+m_count 40
+Average Scan Matching Score=353.787
+neff= 79.915
+Registering Scans:Done
+update frame 213
+update ld=0.0603985 ad=0.103303
+Laser Pose= 0.875651 0.0235077 2.45994
+m_count 41
+Average Scan Matching Score=352.684
+neff= 79.9136
+Registering Scans:Done
+update frame 218
+update ld=0.0524605 ad=0.0941494
+Laser Pose= 0.918495 -0.00673514 2.36579
+m_count 42
+Average Scan Matching Score=353.026
+neff= 79.9124
+Registering Scans:Done
+update frame 223
+update ld=0.051865 ad=0.0955634
+Laser Pose= 0.957931 -0.040392 2.27022
+m_count 43
+Average Scan Matching Score=353.817
+neff= 79.9128
+Registering Scans:Done
+update frame 228
+update ld=0.0511314 ad=0.0976956
+Laser Pose= 0.993606 -0.0769993 2.17253
+m_count 44
+Average Scan Matching Score=354.079
+neff= 79.9123
+Registering Scans:Done
+update frame 233
+update ld=0.055632 ad=0.108594
+Laser Pose= 1.02821 -0.12053 2.06393
+m_count 45
+Average Scan Matching Score=352.309
+neff= 79.9087
+Registering Scans:Done
+update frame 238
+update ld=0.0501887 ad=0.0998713
+Laser Pose= 1.05527 -0.162775 1.96406
+m_count 46
+Average Scan Matching Score=353.449
+neff= 79.9082
+Registering Scans:Done
+update frame 243
+update ld=0.0516677 ad=0.104915
+Laser Pose= 1.07867 -0.208815 1.85915
+m_count 47
+Average Scan Matching Score=353.961
+neff= 79.9079
+Registering Scans:Done
+update frame 248
+update ld=0.0514878 ad=0.106385
+Laser Pose= 1.09711 -0.256862 1.75276
+m_count 48
+Average Scan Matching Score=352.695
+neff= 79.9071
+Registering Scans:Done
+update frame 253
+update ld=0.0533316 ad=0.111554
+Laser Pose= 1.11078 -0.308387 1.64121
+m_count 49
+Average Scan Matching Score=353.304
+neff= 79.9066
+Registering Scans:Done
+update frame 258
+update ld=0.050523 ad=0.106111
+Laser Pose= 1.11838 -0.358314 1.5351
+m_count 50
+Average Scan Matching Score=353.827
+neff= 79.9063
+Registering Scans:Done
+update frame 263
+update ld=0.0516252 ad=0.109995
+Laser Pose= 1.12068 -0.409862 1.4251
+m_count 51
+Average Scan Matching Score=353.949
+neff= 79.9064
+Registering Scans:Done
+update frame 269
+update ld=0.0614969 ad=0.131621
+Laser Pose= 1.11605 -0.471141 1.29348
+m_count 52
+Average Scan Matching Score=353.539
+neff= 79.9068
+Registering Scans:Done
+update frame 274
+update ld=0.051722 ad=0.1114
+Laser Pose= 1.106 -0.521851 1.18208
+m_count 53
+Average Scan Matching Score=353.603
+neff= 79.9057
+Registering Scans:Done
+update frame 279
+update ld=0.0516067 ad=0.111035
+Laser Pose= 1.09038 -0.57101 1.07105
+m_count 54
+Average Scan Matching Score=353.835
+neff= 79.9067
+Registering Scans:Done
+update frame 285
+update ld=0.0623528 ad=0.133072
+Laser Pose= 1.06436 -0.627627 0.937975
+m_count 55
+Average Scan Matching Score=354.036
+neff= 79.906
+Registering Scans:Done
+update frame 290
+update ld=0.0507744 ad=0.108593
+Laser Pose= 1.03779 -0.670861 0.829382
+m_count 56
+Average Scan Matching Score=353.354
+neff= 79.9054
+Registering Scans:Done
+update frame 295
+update ld=0.0514928 ad=0.107887
+Laser Pose= 1.00613 -0.711442 0.721495
+m_count 57
+Average Scan Matching Score=353.999
+neff= 79.9041
+Registering Scans:Done
+update frame 300
+update ld=0.0517787 ad=0.106841
+Laser Pose= 0.970041 -0.748535 0.614654
+m_count 58
+Average Scan Matching Score=353.692
+neff= 79.9043
+Registering Scans:Done
+[33m[WARN] [1747770097.990786831, 38.466000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+update frame 305
+update ld=0.0502369 ad=0.0397469
+Laser Pose= 0.929652 -0.778266 0.574907
+m_count 59
+Average Scan Matching Score=353.705
+neff= 79.9037
+Registering Scans:Done
+update frame 310
+update ld=0.0508172 ad=0.0082303
+Laser Pose= 0.887175 -0.806159 0.566677
+m_count 60
+Average Scan Matching Score=353.826
+neff= 79.9032
+Registering Scans:Done
+[33m[WARN] [1747770100.429149726, 39.561000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+update frame 316
+update ld=0.0603289 ad=0.00917571
+Laser Pose= 0.836447 -0.838813 0.557501
+m_count 61
+Average Scan Matching Score=353.86
+neff= 79.9023
+Registering Scans:Done
+update frame 321
+update ld=0.050286 ad=0.00798563
+Laser Pose= 0.793935 -0.865671 0.549516
+m_count 62
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame base_footprint (parent odom) at time 40.223000 according to authority unknown_publisher
+         at line 279 in /tmp/binarydeb/ros-noetic-tf2-0.7.8/src/buffer_core.cpp
+[33m[WARN] [1747770101.955570932, 40.294000000]: TF_REPEATED_DATA ignoring data with redundant timestamp for frame base_footprint (parent odom) at time 40,223000 according to authority unknown_publisher[0m
+[0m[INFO] [1747770052.133574611, 16.304000000]: global_costmap: Using plugin "static_layer"[0m
+[0m[INFO] [1747770052.151839217, 16.319000000]: Requesting the map...[0m
+[0m[INFO] [1747770052.489218989, 16.424000000]: Resizing costmap to 352 X 320 at 0.100000 m/pix[0m
+[0m[INFO] [1747770052.725070014, 16.525000000]: Received a 352 X 320 map at 0.100000 m/pix[0m
+[0m[INFO] [1747770052.763200115, 16.540000000]: global_costmap: Using plugin "voxel_layer"[0m
+[0m[INFO] [1747770052.804927465, 16.568000000]:     Subscribed to Topics: [0m
+[0m[INFO] [1747770052.872651639, 16.584000000]: global_costmap: Using plugin "inflation_layer"[0m
+[0m[INFO] [1747770053.066636819, 16.646000000]: [FullCoveragePlanner] Polygon corners from params: P1(-3.5,2.2), P2(3.5,2.2), P3(3.5,-2), P4(-3.5,-2)[0m
+[0m[INFO] [1747770053.068317118, 16.646000000]: [FullCoveragePlanner] FullCoveragePlanner initialized. RobotRadius=0.28, SweepFactor=0.65, PointDist=0.07.[0m
+[0m[INFO] [1747770053.076437896, 16.668000000]: local_costmap: Using plugin "obstacle_layer"[0m
+[0m[INFO] [1747770053.089840536, 16.676000000]:     Subscribed to Topics: [0m
+[0m[INFO] [1747770053.104505663, 16.692000000]: local_costmap: Using plugin "inflation_layer"[0m
+[0m[INFO] [1747770053.243028398, 16.772000000]: Created local_planner blm6191_coverage_planners/PurePursuitLocalPlanner[0m
+[0m[INFO] [1747770053.252739581, 16.785000000]: [PurePursuitLocalPlanner] Using hardcoded global frame for Pure Pursuit: 'map'[0m
+[0m[INFO] [1747770053.256601234, 16.787000000]: [PurePursuitLocalPlanner] PurePursuitLocalPlanner initialized. Lookahead: 0.90, LinVel: 0.10, MaxAngVel: 0.55, GoalTol: 0.15, BaseFrame: base_footprint, GlobalFrame: map[0m
+[0m[INFO] [1747770053.961925536, 17.172000000]: Recovery behavior will clear layer 'obstacles'[0m
+[0m[INFO] [1747770053.978462807, 17.187000000]: Recovery behavior will clear layer 'obstacles'[0m
+[0m[INFO] [1747770054.087367456, 17.292000000]: odom received![0m
+[0m[INFO] [1747770057.808543255, 19.259000000]: [FCP::makePlan] Generating Boustrophedon coverage plan...[0m
+[0m[INFO] [1747770057.808717747, 19.259000000]: [FCP::GenPath] Starting Boustrophedon. Polygon size: 4[0m
+[0m[INFO] [1747770057.808748348, 19.259000000]: [FCP::GenPath] Polygon Bounds: X[-3.50, 3.50], Y[-2.00, 2.20][0m
+[0m[INFO] [1747770057.808760645, 19.259000000]: [FCP::GenPath] RobotRadius(param): 0.28, SweepSpacingFactor: 0.65 => LineSeparation: 0.36. EffectivePointDist: 0.10[0m
+[0m[INFO] [1747770057.809568028, 19.260000000]: [FCP::GenPath] Final path generated with 784 points.[0m
+[0m[INFO] [1747770057.810151462, 19.261000000]: [FCP::makePlan] Plan generated with 784 points.[0m
+[0m[INFO] [1747770058.008473342, 19.359000000]: PurePursuitLocalPlanner: Received new plan with 784 points. First point frame: 'map', Last point frame: 'map'. Expected global frame for planner: 'map'[0m
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame base_footprint (parent odom) at time 40.223000 according to authority unknown_publisher
+         at line 279 in /tmp/binarydeb/ros-noetic-tf2-0.7.8/src/buffer_core.cpp
+Average Scan Matching Score=354.322
+neff= 79.9015
+Registering Scans:Done
+[33m[WARN] [1747770102.657130626, 40.561000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+update frame 326
+update ld=0.0510862 ad=0.00763465
+Laser Pose= 0.750529 -0.89261 0.541881
+m_count 63
+Average Scan Matching Score=354.202
+neff= 79.902
+Registering Scans:Done
+update frame 332
+update ld=0.0597143 ad=0.00881107
+Laser Pose= 0.699511 -0.923641 0.53307
+m_count 64
+Average Scan Matching Score=354.118
+neff= 79.9024
+Registering Scans:Done
+[33m[WARN] [1747770104.885543340, 41.562000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+update frame 337
+update ld=0.0499644 ad=0.00806791
+Laser Pose= 0.656638 -0.9493 0.525002
+m_count 65
+Average Scan Matching Score=353.837
+neff= 79.9027
+Registering Scans:Done
+update frame 343
+update ld=0.0600214 ad=0.00867557
+Laser Pose= 0.604837 -0.979617 0.516326
+m_count 66
+[33m[WARN] [1747770106.925465041, 42.583000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+Average Scan Matching Score=353.735
+neff= 79.9012
+Registering Scans:Done
+update frame 348
+update ld=0.0500794 ad=0.0082583
+Laser Pose= 0.561444 -1.00462 0.508068
+m_count 67
+Average Scan Matching Score=353.89
+neff= 79.9005
+Registering Scans:Done
+update frame 353
+update ld=0.0506572 ad=0.0071225
+Laser Pose= 0.517311 -1.02948 0.500946
+m_count 68
+[33m[WARN] [1747770108.853602499, 43.659000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+Average Scan Matching Score=354.088
+neff= 79.8998
+Registering Scans:Done
+update frame 359
+update ld=0.0603655 ad=0.00991995
+Laser Pose= 0.464524 -1.05877 0.491026
+m_count 69
+Average Scan Matching Score=353.989
+neff= 79.8993
+Registering Scans:Done
+update frame 365
+update ld=0.0599645 ad=0.00846263
+Laser Pose= 0.411778 -1.08729 0.482563
+m_count 70
+Average Scan Matching Score=353.989
+neff= 79.8994
+Registering Scans:Done
+[33m[WARN] [1747770111.225254424, 44.686000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+update frame 370
+update ld=0.0506135 ad=0.00846474
+Laser Pose= 0.367095 -1.11106 0.474098
+m_count 71
+Average Scan Matching Score=353.907
+neff= 79.8988
+Registering Scans:Done
+update frame 376
+update ld=0.0624797 ad=0.00874631
+Laser Pose= 0.311642 -1.13985 0.465352
+m_count 72
+[33m[WARN] [1747770113.658036221, 45.762000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+Average Scan Matching Score=353.704
+neff= 79.899
+Registering Scans:Done
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom (parent map) at time 45.931000 according to authority unknown_publisher
+         at line 279 in /tmp/binarydeb/ros-noetic-tf2-0.7.8/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom (parent map) at time 45.931000 according to authority unknown_publisher
+         at line 279 in /tmp/binarydeb/ros-noetic-tf2-0.7.8/src/buffer_core.cpp
+[33m[WARN] [1747770113.778600737, 45.882000000]: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom (parent map) at time 45,931000 according to authority unknown_publisher[0m
+update frame 382
+update ld=0.0584166 ad=0.00892895
+Laser Pose= 0.259565 -1.16632 0.456423
+m_count 73
+Average Scan Matching Score=354.059
+neff= 79.8988
+Registering Scans:Done
+update frame 387
+update ld=0.0501035 ad=0.00748822
+Laser Pose= 0.214722 -1.18866 0.448935
+m_count 74
+Average Scan Matching Score=353.742
+neff= 79.8978
+Registering Scans:Done
+[33m[WARN] [1747770116.015828515, 46.868000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+update frame 392
+update ld=0.0503939 ad=0.00774146
+Laser Pose= 0.169443 -1.21079 0.441193
+m_count 75
+Average Scan Matching Score=353.829
+neff= 79.8981
+Registering Scans:Done
+[33m[WARN] [1747770118.249442924, 47.872000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+update frame 398
+update ld=0.0598795 ad=0.00887001
+Laser Pose= 0.115433 -1.23664 0.432323
+m_count 76
+Average Scan Matching Score=353.646
+neff= 79.898
+Registering Scans:Done
+update frame 403
+update ld=0.0508469 ad=0.00738662
+Laser Pose= 0.0693747 -1.25818 0.424937
+m_count 77
+Average Scan Matching Score=353.765
+neff= 79.8975
+Registering Scans:Done
+[33m[WARN] [1747770120.721873900, 48.961000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+update frame 409
+update ld=0.060138 ad=0.00932947
+Laser Pose= 0.0147191 -1.28327 0.415607
+m_count 78
+Average Scan Matching Score=353.77
+neff= 79.896
+Registering Scans:Done
+update frame 414
+update ld=0.050879 ad=0.00715642
+Laser Pose= -0.0317231 -1.30405 0.408451
+m_count 79
+Average Scan Matching Score=353.843
+neff= 79.8965
+Registering Scans:Done
+[33m[WARN] [1747770122.889604301, 50.059000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+update frame 420
+update ld=0.0601259 ad=0.00956128
+Laser Pose= -0.0867704 -1.32823 0.39889
+m_count 80
+Average Scan Matching Score=353.53
+neff= 79.8966
+Registering Scans:Done
+update frame 425
+update ld=0.0501057 ad=0.00676907
+Laser Pose= -0.132842 -1.34793 0.392121
+m_count 81
+Average Scan Matching Score=353.172
+neff= 79.8965
+Registering Scans:Done
+[33m[WARN] [1747770124.782756249, 51.059000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+update frame 431
+update ld=0.0609231 ad=0.00985814
+Laser Pose= -0.189012 -1.37152 0.382262
+m_count 82
+Average Scan Matching Score=354.23
+neff= 79.8961
+Registering Scans:Done
+update frame 436
+update ld=0.0508437 ad=0.0066903
+Laser Pose= -0.236088 -1.39073 0.375572
+m_count 83
+Average Scan Matching Score=352.81
+neff= 79.8954
+Registering Scans:Done
+[33m[WARN] [1747770127.034689647, 52.082000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+update frame 441
+update ld=0.0534095 ad=0.00872104
+Laser Pose= -0.285654 -1.41062 0.366851
+m_count 84
+Average Scan Matching Score=353.092
+neff= 79.8952
+Registering Scans:Done
+update frame 447
+update ld=0.0590957 ad=0.00789977
+Laser Pose= -0.340716 -1.43208 0.358951
+m_count 85
+[33m[WARN] [1747770129.612223743, 53.159000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+Average Scan Matching Score=353.356
+neff= 79.8958
+Registering Scans:Done
+update frame 453
+update ld=0.0600763 ad=0.00893726
+Laser Pose= -0.396864 -1.45344 0.350014
+m_count 86
+Average Scan Matching Score=353.852
+neff= 79.8955
+Registering Scans:Done
+update frame 458
+update ld=0.0508787 ad=0.00741878
+Laser Pose= -0.444561 -1.47116 0.342595
+m_count 87
+Average Scan Matching Score=353.826
+neff= 79.8961
+Registering Scans:[33m[WARN] [1747770131.972952140, 54.159000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+Done
+update frame 463
+update ld=0.0540584 ad=0.0079155
+Laser Pose= -0.495384 -1.48957 0.33468
+m_count 88
+Average Scan Matching Score=354.181
+neff= 79.8962
+Registering Scans:Done
+update frame 468
+update ld=0.0519341 ad=0.00765777
+Laser Pose= -0.544342 -1.5069 0.327022
+m_count 89
+[33m[WARN] [1747770134.340739485, 55.159000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+Average Scan Matching Score=353.786
+neff= 79.8962
+Registering Scans:Done
+update frame 474
+update ld=0.0588855 ad=0.0084979
+Laser Pose= -0.600017 -1.52608 0.318524
+m_count 90
+Average Scan Matching Score=353.474
+neff= 79.8944
+Registering Scans:Done
+[33m[WARN] [1747770136.487559423, 56.160000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+update frame 480
+update ld=0.0598921 ad=0.00903457
+Laser Pose= -0.6568 -1.54513 0.309489
+m_count 91
+Average Scan Matching Score=353.46
+neff= 79.8958
+Registering Scans:Done
+update frame 485
+update ld=0.0500529 ad=0.00692847
+Laser Pose= -0.704393 -1.56062 0.302561
+m_count 92
+Average Scan Matching Score=353.828
+neff= 79.8957
+Registering Scans:Done
+[33m[WARN] [1747770138.996662451, 57.160000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+update frame 490
+update ld=0.0506671 ad=0.00764363
+Laser Pose= -0.75267 -1.576 0.294917
+m_count 93
+Average Scan Matching Score=353.517
+neff= 79.8954
+Registering Scans:Done
+update frame 496
+update ld=0.0598296 ad=0.00834397
+Laser Pose= -0.809834 -1.59366 0.286573
+m_count 94
+Average Scan Matching Score=353.848
+neff= 79.8955
+Registering Scans:Done
+[33m[WARN] [1747770141.316801102, 58.170000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+update frame 501
+update ld=0.0514561 ad=0.00781176
+Laser Pose= -0.859107 -1.60849 0.278762
+m_count 95
+Average Scan Matching Score=351.886
+neff= 79.8947
+Registering Scans:Done
+update frame 506
+update ld=0.050134 ad=0.00677487
+Laser Pose= -0.90723 -1.62254 0.271987
+m_count 96
+Average Scan Matching Score=354.216
+neff= 79.894
+Registering Scans:[33m[WARN] [1747770143.458201734, 59.260000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+Done
+update frame 511
+update ld=0.0501527 ad=0.00762589
+Laser Pose= -0.95546 -1.6363 0.264361
+m_count 97
+Average Scan Matching Score=353.875
+neff= 79.8939
+Registering Scans:Done
+update frame 516
+update ld=0.0498545 ad=0.00676467
+Laser Pose= -1.00351 -1.64958 0.257596
+m_count 98
+Average Scan Matching Score=353.979
+neff= 79.8927
+Registering Scans:Done
+[33m[WARN] [1747770145.460168253, 60.260000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+update frame 521
+update ld=0.054181 ad=0.00821635
+Laser Pose= -1.05583 -1.66368 0.24938
+m_count 99
+Average Scan Matching Score=354.062
+neff= 79.8924
+Registering Scans:Done
+update frame 527
+update ld=0.0583825 ad=0.00791466
+Laser Pose= -1.11233 -1.67836 0.241465
+m_count 100
+Average Scan Matching Score=353.812
+neff= 79.8916
+Registering Scans:Done
+[33m[WARN] [1747770147.571282978, 61.360000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+update frame 532
+update ld=0.052281 ad=0.0073134
+Laser Pose= -1.16303 -1.69111 0.234152
+m_count 101
+Average Scan Matching Score=353.81
+neff= 79.8918
+Registering Scans:Done
+update frame 538
+update ld=0.059038 ad=0.00881157
+Laser Pose= -1.22039 -1.70511 0.22534
+m_count 102
+Average Scan Matching Score=354.329
+neff= 79.8912
+Registering Scans:Done
+[33m[WARN] [1747770149.743111807, 62.361000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+update frame 543
+update ld=0.0494263 ad=0.00653834
+Laser Pose= -1.26851 -1.71638 0.218802
+m_count 103
+Average Scan Matching Score=354.209
+neff= 79.8906
+Registering Scans:Done
+update frame 548
+update ld=0.0512643 ad=0.00779017
+Laser Pose= -1.31849 -1.7278 0.211012
+m_count 104
+[33m[WARN] [1747770151.546702509, 63.362000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+Average Scan Matching Score=353.861
+neff= 79.8893
+Registering Scans:Done
+update frame 553
+update ld=0.0502278 ad=0.0066002
+Laser Pose= -1.36755 -1.73854 0.204412
+m_count 105
+Average Scan Matching Score=354.07
+neff= 79.8881
+Registering Scans:Done
+update frame 559
+update ld=0.0598656 ad=0.00905049
+Laser Pose= -1.42611 -1.751 0.195361
+m_count 106
+[33m[WARN] [1747770153.396068021, 64.460000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+Average Scan Matching Score=354.021
+neff= 79.8884
+Registering Scans:Done
+update frame 564
+update ld=0.0501034 ad=0.00640345
+Laser Pose= -1.47521 -1.76095 0.188958
+m_count 107
+Average Scan Matching Score=354.108
+neff= 79.8869
+Registering Scans:Done
+update frame 570
+update ld=0.0602239 ad=0.00924001
+Laser Pose= -1.53431 -1.77257 0.179718
+m_count 108
+Average Scan Matching Score=354.075
+neff= 79.8864
+Registering Scans:Done
+[33m[WARN] [1747770155.271360835, 65.516000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+update frame 575
+update ld=0.0440931 ad=0.08965
+Laser Pose= -1.57111 -1.78946 0.0900676
+m_count 109
+Average Scan Matching Score=354.125
+neff= 79.8859
+Registering Scans:Done
+update frame 580
+update ld=0.0244258 ad=0.158246
+Laser Pose= -1.58063 -1.7976 0.0026112
+m_count 110
+[33m[WARN] [1747770157.295828972, 66.560000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+Average Scan Matching Score=354.081
+neff= 79.8858
+Registering Scans:Done
+update frame 584
+update ld=0.0143613 ad=0.0692235
+Laser Pose= -1.58147 -1.80103 0.000232215
+m_count 111
+Average Scan Matching Score=353.987
+neff= 79.8851
+Registering Scans:Done
+update frame 589
+update ld=0.00914739 ad=0.0618409
+Laser Pose= -1.58114 -1.79904 -0.0138623
+m_count 112
+[33m[WARN] [1747770159.420980059, 67.560000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+Average Scan Matching Score=353.655
+neff= 79.8846
+Registering Scans:Done
+update frame 594
+update ld=0.0193056 ad=0.0889538
+Laser Pose= -1.58131 -1.80009 0.0192389
+m_count 113
+Average Scan Matching Score=354.182
+neff= 79.8845
+Registering Scans:Done
+update frame 600
+update ld=0.0192076 ad=0.122171
+Laser Pose= -1.58403 -1.80049 -0.0132601
+m_count 114
+Average Scan Matching Score=354.177
+neff= 79.8847
+Registering Scans:Done
+[33m[WARN] [1747770161.836671345, 68.662000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+update frame 606
+update ld=0.0143432 ad=0.0404788
+Laser Pose= -1.5869 -1.80254 0.000429413
+m_count 115
+Average Scan Matching Score=354.084
+neff= 79.884
+Registering Scans:Done
+update frame 611
+update ld=0.0112858 ad=0.0782151
+Laser Pose= -1.57936 -1.80054 0.0334183
+m_count 116
+[33m[WARN] [1747770163.582127748, 69.663000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+Average Scan Matching Score=353.941
+neff= 79.8833
+Registering Scans:Done
+update frame 617
+update ld=0.0178313 ad=0.135018
+Laser Pose= -1.57981 -1.80996 -0.0514232
+m_count 117
+Average Scan Matching Score=354.474
+neff= 79.8837
+Registering Scans:Done
+update frame 622
+update ld=0.0181994 ad=0.109164
+Laser Pose= -1.58204 -1.80102 0.0402972
+m_count 118
+[33m[WARN] [1747770165.712328279, 70.760000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+Average Scan Matching Score=354.439
+neff= 79.8842
+Registering Scans:Done
+update frame 627
+update ld=0.0129867 ad=0.0692638
+Laser Pose= -1.58168 -1.80743 -0.0244709
+m_count 119
+Average Scan Matching Score=353.949
+neff= 79.8827
+Registering Scans:Done
+update frame 633
+update ld=0.0173033 ad=0.0776705
+Laser Pose= -1.57964 -1.80351 0.0241199
+m_count 120
+[33m[WARN] [1747770167.513227816, 71.859000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+Average Scan Matching Score=353.511
+neff= 79.8824
+Registering Scans:Done
+update frame 638
+update ld=0.0124096 ad=0.0588907
+Laser Pose= -1.57744 -1.80638 -0.0291381
+m_count 121
+Average Scan Matching Score=354.48
+neff= 79.8834
+Registering Scans:Done
+update frame 644
+update ld=0.0204111 ad=0.0812916
+Laser Pose= -1.58209 -1.80507 -0.00800671
+m_count 122
+[33m[WARN] [1747770169.349238142, 72.860000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+Average Scan Matching Score=354.45
+neff= 79.8818
+Registering Scans:Done
+update frame 649
+update ld=0.0162069 ad=0.0525799
+Laser Pose= -1.57802 -1.80398 -0.0265208
+m_count 123
+Average Scan Matching Score=354.062
+neff= 79.8814
+Registering Scans:Done
+[33m[WARN] [1747770171.162272182, 73.880000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+update frame 655
+update ld=0.0193189 ad=0.124741
+Laser Pose= -1.58249 -1.80418 -0.000402263
+m_count 124
+Average Scan Matching Score=354.039
+neff= 79.8814
+Registering Scans:Done
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom (parent map) at time 74.278000 according to authority unknown_publisher
+         at line 279 in /tmp/binarydeb/ros-noetic-tf2-0.7.8/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom (parent map) at time 74.278000 according to authority unknown_publisher
+         at line 279 in /tmp/binarydeb/ros-noetic-tf2-0.7.8/src/buffer_core.cpp
+[33m[WARN] [1747770172.019829927, 74.230000000]: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom (parent map) at time 74,278000 according to authority unknown_publisher[0m
+update frame 660
+update ld=0.0117628 ad=0.0431027
+Laser Pose= -1.58663 -1.80273 0.00242639
+m_count 125
+Average Scan Matching Score=354.136
+neff= 79.8815
+Registering Scans:Done
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom (parent map) at time 74.674000 according to authority unknown_publisher
+         at line 279 in /tmp/binarydeb/ros-noetic-tf2-0.7.8/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom (parent map) at time 74.674000 according to authority unknown_publisher
+         at line 279 in /tmp/binarydeb/ros-noetic-tf2-0.7.8/src/buffer_core.cpp
+[33m[WARN] [1747770172.918973926, 74.626000000]: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom (parent map) at time 74,674000 according to authority unknown_publisher[0m
+[33m[WARN] [1747770173.377489220, 74.894000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+update frame 666
+update ld=0.0187971 ad=0.0832774
+Laser Pose= -1.58262 -1.80681 -0.00338725
+m_count 126
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom (parent map) at time 75.289000 according to authority unknown_publisher
+         at line 279 in /tmp/binarydeb/ros-noetic-tf2-0.7.8/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom (parent map) at time 75.289000 according to authority unknown_publisher
+         at line 279 in /tmp/binarydeb/ros-noetic-tf2-0.7.8/src/buffer_core.cpp
+[33m[WARN] [1747770174.168119618, 75.243000000]: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom (parent map) at time 75,289000 according to authority unknown_publisher[0m
+Average Scan Matching Score=353.938
+neff= 79.8816
+Registering Scans:Done
+update frame 672
+update ld=0.0235451 ad=0.143668
+Laser Pose= -1.58328 -1.80234 0.0125026
+m_count 127
+Average Scan Matching Score=354.08
+neff= 79.8806
+Registering Scans:Done
+[33m[WARN] [1747770175.762624143, 75.959000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+update frame 677
+update ld=0.0204265 ad=0.100516
+Laser Pose= -1.58195 -1.80689 -0.0133934
+m_count 128
+Average Scan Matching Score=353.821
+neff= 79.8806
+Registering Scans:Done
+update frame 682
+update ld=0.0224142 ad=0.084929
+Laser Pose= -1.58054 -1.80617 -0.0133973
+m_count 129
+[33m[WARN] [1747770177.782299176, 76.965000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+Average Scan Matching Score=354.115
+neff= 79.8806
+Registering Scans:Done
+update frame 687
+update ld=0.0155478 ad=0.0935951
+Laser Pose= -1.58137 -1.80465 0.0211198
+m_count 130
+Average Scan Matching Score=354.349
+neff= 79.8804
+Registering Scans:Done
+update frame 693
+update ld=0.0168033 ad=0.10711
+Laser Pose= -1.58284 -1.80088 0.0463613
+m_count 131
+[33m[WARN] [1747770179.593519516, 78.059000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+Average Scan Matching Score=354.185
+neff= 79.8796
+Registering Scans:Done
+update frame 699
+update ld=0.0253516 ad=0.164141
+Laser Pose= -1.57962 -1.80655 -0.00427195
+m_count 132
+Average Scan Matching Score=354.181
+neff= 79.8794
+Registering Scans:Done
+update frame 704
+update ld=0.0163144 ad=0.0423789
+Laser Pose= -1.58603 -1.8068 -0.00034803
+m_count 133
+[33m[WARN] [1747770181.551758666, 79.060000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+Average Scan Matching Score=354.144
+neff= 79.8785
+Registering Scans:Done
+update frame 709
+update ld=0.0205835 ad=0.0951546
+Laser Pose= -1.58033 -1.80846 0.00264923
+m_count 134
+Average Scan Matching Score=353.51
+neff= 79.8812
+Registering Scans:Done
+update frame 715
+update ld=0.0158752 ad=0.102128
+Laser Pose= -1.58426 -1.81103 -0.0368724
+m_count 135
+[33m[WARN] [1747770183.549173998, 80.060000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+Average Scan Matching Score=354.042
+neff= 79.882
+Registering Scans:Done
+update frame 720
+update ld=0.023596 ad=0.0784711
+Laser Pose= -1.58197 -1.80953 -0.0127709
+m_count 136
+Average Scan Matching Score=354.454
+neff= 79.8824
+Registering Scans:Done
+[33m[WARN] [1747770185.974622956, 81.060000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+update frame 726
+update ld=0.0205981 ad=0.0528386
+Laser Pose= -1.58082 -1.81004 -0.00688584
+m_count 137
+Average Scan Matching Score=354.234
+neff= 79.8809
+Registering Scans:Done
+update frame 731
+update ld=0.0154048 ad=0.0968696
+Laser Pose= -1.58407 -1.80665 0.0269155
+m_count 138
+Average Scan Matching Score=354.493
+neff= 79.8816
+Registering Scans:Done
+[33m[WARN] [1747770188.227533009, 82.060000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+update frame 737
+update ld=0.0212769 ad=0.0801206
+Laser Pose= -1.58138 -1.80897 0.00778768
+m_count 139
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom (parent map) at time 82.472000 according to authority unknown_publisher
+         at line 279 in /tmp/binarydeb/ros-noetic-tf2-0.7.8/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom (parent map) at time 82.472000 according to authority unknown_publisher
+         at line 279 in /tmp/binarydeb/ros-noetic-tf2-0.7.8/src/buffer_core.cpp
+[33m[WARN] [1747770188.974690548, 82.423000000]: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom (parent map) at time 82,472000 according to authority unknown_publisher[0m
+Average Scan Matching Score=354.602
+neff= 79.8823
+Registering Scans:Done
+update frame 742
+update ld=0.0173037 ad=0.0929311
+Laser Pose= -1.58431 -1.81213 -0.0074714
+m_count 140
+Average Scan Matching Score=354.027
+neff= 79.8825
+Registering Scans:Done
+[33m[WARN] [1747770190.552512339, 83.163000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+update frame 746
+update ld=0.013505 ad=0.0584178
+Laser Pose= -1.58083 -1.80922 -0.00756657
+m_count 141
+Average Scan Matching Score=354.356
+neff= 79.8808
+Registering Scans:Done
+update frame 752
+update ld=0.0118138 ad=0.0266815
+Laser Pose= -1.58295 -1.81229 0.00150778
+m_count 142
+Average Scan Matching Score=353.944
+neff= 79.8815
+Registering Scans:[33m[WARN] [1747770192.523855915, 84.260000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+Done
+update frame 757
+update ld=0.0162438 ad=0.083386
+Laser Pose= -1.58508 -1.80958 -0.00815183
+m_count 143
+Average Scan Matching Score=354.267
+neff= 79.8807
+Registering Scans:Done
+update frame 762
+update ld=0.00972927 ad=0.030656
+Laser Pose= -1.57939 -1.81288 0.0007926
+m_count 144
+Average Scan Matching Score=353.571
+neff= 79.8816
+Registering Scans:Done
+update frame 767
+update ld=0.0119404 ad=0.0383389
+Laser Pose= -1.58476 -1.80996 -0.00818802
+m_count 145
+[33m[WARN] [1747770194.982797802, 85.360000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+Average Scan Matching Score=354.223
+neff= 79.8804
+Registering Scans:Done
+update frame 772
+update ld=0.0191314 ad=0.0585074
+Laser Pose= -1.57813 -1.811 0.0345042
+m_count 146
+Average Scan Matching Score=354.1
+neff= 79.8807
+Registering Scans:Done
+update frame 777
+update ld=0.0158545 ad=0.116428
+Laser Pose= -1.5791 -1.81453 -0.0400474
+m_count 147
+[33m[WARN] [1747770197.436822657, 86.360000000]: findLookaheadPoint: No valid intersection found on path segments. Targeting the last point of the plan.[0m
+[2025-05-20 22:43:17] #####################################################
+[2025-05-20 22:43:17] Temizleme sinyali alındı, süreçler sonlandırılıyor...
+[2025-05-20 22:43:17] gazebo (PID: 19482) sonlandırılıyor (SIGINT)...
+[2025-05-20 22:43:17] slam (PID: 19784) sonlandırılıyor (SIGINT)...
+[INFO] [1747770048.652938, 0.000000]: Polygon Visualizer (params from private ns): P1(-3.50,2.20), P2(3.50,2.20), P3(3.50,-2.00), P4(-3.50,-2.00) in frame 'map'
+[INFO] [1747770049.795819, 15.176000]: Coverage area marker published to /coverage_area_marker.
+[2025-05-20 22:43:17] rviz (PID: 19877) sonlandırılıyor (SIGINT)...
+[2025-05-20 22:43:17] move_base (PID: 20001) sonlandırılıyor (SIGINT)...
+[2025-05-20 22:43:17] poly_viz (PID: 19955) sonlandırılıyor (SIGINT)...
+Average Scan Matching Score=354.057
+neff= 79.8797
+Registering Scans:Done
+virtual GMapping::GridSlamProcessor::~GridSlamProcessor(): Start
+virtual GMapping::GridSlamProcessor::~GridSlamProcessor(): Deleting tree
+... logging to /home/boyozcu/.ros/log/930a4846-35b1-11f0-84f0-afcb645201fc/roslaunch-boyozcu-VirtualBox-19784.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;/home/boyozcu/robotlar_ws/src/turtlebot3/turtlebot3_slam/launch/turtlebot3_slam.launch
+[1mstarted roslaunch server http://boyozcu-VirtualBox:37263/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /robot_description: <?xml version="1....
+ * /robot_state_publisher/publish_frequency: 50.0
+ * /robot_state_publisher/tf_prefix: 
+ * /rosdistro: noetic
+ * /rosversion: 1.17.0
+ * /turtlebot3_slam_gmapping/angularUpdate: 0.2
+ * /turtlebot3_slam_gmapping/astep: 0.05
+ * /turtlebot3_slam_gmapping/base_frame: base_footprint
+ * /turtlebot3_slam_gmapping/delta: 0.1
+ * /turtlebot3_slam_gmapping/iterations: 5
+ * /turtlebot3_slam_gmapping/kernelSize: 1
+ * /turtlebot3_slam_gmapping/lasamplerange: 0.005
+ * /turtlebot3_slam_gmapping/lasamplestep: 0.005
+ * /turtlebot3_slam_gmapping/linearUpdate: 1.0
+ * /turtlebot3_slam_gmapping/llsamplerange: 0.01
+ * /turtlebot3_slam_gmapping/llsamplestep: 0.01
+ * /turtlebot3_slam_gmapping/lsigma: 0.075
+ * /turtlebot3_slam_gmapping/lskip: 0
+ * /turtlebot3_slam_gmapping/lstep: 0.05
+ * /turtlebot3_slam_gmapping/map_frame: map
+ * /turtlebot3_slam_gmapping/map_update_interval: 2.0
+ * /turtlebot3_slam_gmapping/maxUrange: 25.0
+ * /turtlebot3_slam_gmapping/minimumScore: 50
+ * /turtlebot3_slam_gmapping/odom_frame: odom
+ * /turtlebot3_slam_gmapping/ogain: 3.0
+ * /turtlebot3_slam_gmapping/particles: 80
+ * /turtlebot3_slam_gmapping/resampleThreshold: 0.5
+ * /turtlebot3_slam_gmapping/sigma: 0.05
+ * /turtlebot3_slam_gmapping/srr: 0.1
+ * /turtlebot3_slam_gmapping/srt: 0.2
+ * /turtlebot3_slam_gmapping/str: 0.1
+ * /turtlebot3_slam_gmapping/stt: 0.2
+ * /turtlebot3_slam_gmapping/temporalUpdate: 0.5
+ * /turtlebot3_slam_gmapping/xmax: 10.0
+ * /turtlebot3_slam_gmapping/xmin: -10.0
+ * /turtlebot3_slam_gmapping/ymax: 10.0
+ * /turtlebot3_slam_gmapping/ymin: -10.0
+
+NODES
+  /
+    robot_state_publisher (robot_state_publisher/robot_state_publisher)
+    turtlebot3_slam_gmapping (gmapping/slam_gmapping)
+
+[1mROS_MASTER_URI=http://localhost:11311[0m
+]2;/home/boyozcu/robotlar_ws/src/turtlebot3/turtlebot3_slam/launch/turtlebot3_slam.launch http://localhost:11311
+[1mprocess[robot_state_publisher-1]: started with pid [19817][0m
+[1mprocess[turtlebot3_slam_gmapping-2]: started with pid [19818][0m
+[turtlebot3_slam_gmapping-2] killing on exit
+[robot_state_publisher-1] killing on exit
+shutting down processing monitor...
+... shutting down processing monitor complete
+[1mdone[0m
+... logging to /home/boyozcu/.ros/log/930a4846-35b1-11f0-84f0-afcb645201fc/roslaunch-boyozcu-VirtualBox-20001.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;/home/boyozcu/robotlar_ws/src/blm6191_coverage_planners/my_coverage_move_base.launch
+[1mstarted roslaunch server http://boyozcu-VirtualBox:46729/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /move_base/FullCoveragePlanner/frame_id: map
+ * /move_base/FullCoveragePlanner/p1_x: -3.5
+ * /move_base/FullCoveragePlanner/p1_y: 2.2
+ * /move_base/FullCoveragePlanner/p2_x: 3.5
+ * /move_base/FullCoveragePlanner/p2_y: 2.2
+ * /move_base/FullCoveragePlanner/p3_x: 3.5
+ * /move_base/FullCoveragePlanner/p3_y: -2.0
+ * /move_base/FullCoveragePlanner/p4_x: -3.5
+ * /move_base/FullCoveragePlanner/p4_y: -2.0
+ * /move_base/FullCoveragePlanner/path_point_distance: 0.07
+ * /move_base/FullCoveragePlanner/robot_radius: 0.28
+ * /move_base/FullCoveragePlanner/sweep_spacing_factor: 0.65
+ * /move_base/FullCoveragePlanner/use_param_poly: True
+ * /move_base/PurePursuitLocalPlanner/goal_dist_tolerance: 0.15
+ * /move_base/PurePursuitLocalPlanner/linear_vel: 0.1
+ * /move_base/PurePursuitLocalPlanner/lookahead_distance: 0.9
+ * /move_base/PurePursuitLocalPlanner/max_angular_vel: 0.55
+ * /move_base/PurePursuitLocalPlanner/robot_base_frame: base_footprint
+ * /move_base/base_global_planner: blm6191_coverage_...
+ * /move_base/base_local_planner: blm6191_coverage_...
+ * /move_base/controller_frequency: 10.0
+ * /move_base/global_costmap/cost_scaling_factor: 10.0
+ * /move_base/global_costmap/footprint: [[-0.07, -0.07], ...
+ * /move_base/global_costmap/global_frame: map
+ * /move_base/global_costmap/inflation_radius: 0.4
+ * /move_base/global_costmap/laser_scan_sensor/clearing: True
+ * /move_base/global_costmap/laser_scan_sensor/data_type: LaserScan
+ * /move_base/global_costmap/laser_scan_sensor/marking: True
+ * /move_base/global_costmap/laser_scan_sensor/sensor_frame: base_scan
+ * /move_base/global_costmap/laser_scan_sensor/topic: scan
+ * /move_base/global_costmap/observation_sources: laser_scan_sensor
+ * /move_base/global_costmap/obstacle_range: 2.5
+ * /move_base/global_costmap/plugins: [{'name': 'static...
+ * /move_base/global_costmap/publish_frequency: 1.0
+ * /move_base/global_costmap/raytrace_range: 3.0
+ * /move_base/global_costmap/robot_base_frame: base_footprint
+ * /move_base/global_costmap/static_map: True
+ * /move_base/global_costmap/transform_tolerance: 0.5
+ * /move_base/global_costmap/update_frequency: 2.0
+ * /move_base/local_costmap/cost_scaling_factor: 10.0
+ * /move_base/local_costmap/footprint: [[-0.07, -0.07], ...
+ * /move_base/local_costmap/global_frame: map
+ * /move_base/local_costmap/height: 3.0
+ * /move_base/local_costmap/inflation_radius: 0.4
+ * /move_base/local_costmap/laser_scan_sensor/clearing: True
+ * /move_base/local_costmap/laser_scan_sensor/data_type: LaserScan
+ * /move_base/local_costmap/laser_scan_sensor/marking: True
+ * /move_base/local_costmap/laser_scan_sensor/sensor_frame: base_scan
+ * /move_base/local_costmap/laser_scan_sensor/topic: scan
+ * /move_base/local_costmap/observation_sources: laser_scan_sensor
+ * /move_base/local_costmap/obstacle_range: 2.5
+ * /move_base/local_costmap/plugins: [{'name': 'obstac...
+ * /move_base/local_costmap/publish_frequency: 2.0
+ * /move_base/local_costmap/raytrace_range: 3.0
+ * /move_base/local_costmap/resolution: 0.05
+ * /move_base/local_costmap/robot_base_frame: base_footprint
+ * /move_base/local_costmap/rolling_window: True
+ * /move_base/local_costmap/static_map: False
+ * /move_base/local_costmap/transform_tolerance: 0.5
+ * /move_base/local_costmap/update_frequency: 5.0
+ * /move_base/local_costmap/width: 3.0
+ * /rosdistro: noetic
+ * /rosversion: 1.17.0
+
+NODES
+  /
+    move_base (move_base/move_base)
+
+[1mROS_MASTER_URI=http://localhost:11311[0m
+]2;/home/boyozcu/robotlar_ws/src/blm6191_coverage_planners/my_coverage_move_base.launch http://localhost:11311
+[1mprocess[move_base-1]: started with pid [20032][0m
+[move_base-1] killing on exit
+shutting down processing monitor...
+... shutting down processing monitor complete
+[1mdone[0m
+[0m[INFO] [1747770020.590273368]: Finished loading Gazebo ROS API Plugin.[0m
+[0m[INFO] [1747770020.593148142]: waitForService: Service [/gazebo/set_physics_properties] has not been advertised, waiting...[0m
+[0m[INFO] [1747770021.056020229]: waitForService: Service [/gazebo/set_physics_properties] is now available.[0m
+[0m[INFO] [1747770021.108256250]: Physics dynamic reconfigure ready.[0m
+[0m[INFO] [1747770023.020196267, 0.131000000]: Camera Plugin: Using the 'robotNamespace' param: '/'[0m
+[0m[INFO] [1747770023.027071817, 0.131000000]: Camera Plugin (ns = /)  <tf_prefix_>, set to ""[0m
+[0m[INFO] [1747770024.064497874, 0.131000000]: Laser Plugin: Using the 'robotNamespace' param: '/'[0m
+[0m[INFO] [1747770024.064721725, 0.131000000]: Starting Laser Plugin (ns = /)[0m
+[0m[INFO] [1747770024.066742479, 0.131000000]: Laser Plugin (ns = /)  <tf_prefix_>, set to ""[0m
+[0m[INFO] [1747770024.176405333, 0.131000000]: Starting plugin DiffDrive(ns = //)[0m
+[0m[INFO] [1747770024.176570005, 0.131000000]: DiffDrive(ns = //): <rosDebugLevel> = na[0m
+[0m[INFO] [1747770024.177923044, 0.131000000]: DiffDrive(ns = //): <tf_prefix> = [0m
+[0m[INFO] [1747770024.179404369, 0.131000000]: DiffDrive(ns = //): Advertise joint_states[0m
+[0m[INFO] [1747770024.183893611, 0.131000000]: DiffDrive(ns = //): Try to subscribe to cmd_vel[0m
+[0m[INFO] [1747770024.189594375, 0.131000000]: DiffDrive(ns = //): Subscribe to cmd_vel[0m
+[0m[INFO] [1747770024.190350216, 0.131000000]: DiffDrive(ns = //): Advertise odom on odom [0m
+[0m[INFO] [1747770043.104374246]: rviz version 1.14.26[0m
+[0m[INFO] [1747770043.104400644]: compiled against Qt version 5.12.8[0m
+[0m[INFO] [1747770043.104406512]: compiled against OGRE version 1.9.0 (Ghadamon)[0m
+[0m[INFO] [1747770043.187911967]: Forcing OpenGl version 0.[0m
+[0m[INFO] [1747770043.639959545, 12.166000000]: Stereo is NOT SUPPORTED[0m
+[0m[INFO] [1747770043.640080105, 12.166000000]: OpenGL device: llvmpipe (LLVM 12.0.0, 128 bits)[0m
+[0m[INFO] [1747770043.640098253, 12.166000000]: OpenGl version: 3,1 (GLSL 1,4).[0m
+[0m[INFO] [1747770044.655109476, 12.737000000]: Creating 1 swatches[0m
+[0m[INFO] [1747770054.107041385, 17.309000000]: Creating 1 swatches[0m
+[0m[INFO] [1747770054.107263753, 17.309000000]: Creating 1 swatches[0m
+[0m[INFO] [1747770057.805611869, 19.256000000]: Setting goal: Frame:map, Position(3,226, 1,809, 0,000), Orientation(0,000, 0,000, 0,000, 1,000) = Angle: 0,000
+[0m
+[2025-05-20 22:43:20] gazebo (PID: 19482) hala çalışıyor, SIGKILL gönderiliyor...
+[2025-05-20 22:43:20] gazebo sonlandırıldı (veya zaten kapalıydı).
+[2025-05-20 22:43:20] slam sonlandırıldı (veya zaten kapalıydı).
+[2025-05-20 22:43:20] rviz sonlandırıldı (veya zaten kapalıydı).
+[2025-05-20 22:43:20] move_base sonlandırıldı (veya zaten kapalıydı).
+[2025-05-20 22:43:20] poly_viz sonlandırıldı (veya zaten kapalıydı).
+[2025-05-20 22:43:20] Temizleme tamamlandı. Log dosyası: /home/boyozcu/robotlar_ws/src/blm6191_coverage_planners/logs/run_log_20250520_224018.txt
+[33m[WARN] [1747770798.769054965, 86.511000000]: Shutdown request received.[0m
+[33m[WARN] [1747770798.769227884, 86.511000000]: Reason given for shutdown: [[/gazebo_gui] Reason: new node registered with same name][0m
+[0m[INFO] [1747770020.719784387]: Finished loading Gazebo ROS API Plugin.[0m
+[0m[INFO] [1747770020.722080867]: waitForService: Service [/gazebo_gui/set_physics_properties] has not been advertised, waiting...[0m

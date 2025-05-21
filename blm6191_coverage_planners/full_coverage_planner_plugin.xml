@@ -1,0 +1,10 @@
+<library path="lib/libblm6191_coverage_planners_global">
+  <class name="blm6191_coverage_planners/FullCoveragePlanner"
+         type="blm6191_coverage_planners::FullCoveragePlanner"
+         base_class_type="nav_core::BaseGlobalPlanner">
+    <description>
+      A global planner that generates a full coverage (Boustrophedon) path
+      within a specified polygon, considering obstacles from the costmap.
+    </description>
+  </class>
+</library>

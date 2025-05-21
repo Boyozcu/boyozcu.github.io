@@ -1,0 +1,9 @@
+<library path="lib/libblm6191_coverage_planners_local">
+  <class name="blm6191_coverage_planners/PurePursuitLocalPlanner"
+         type="blm6191_coverage_planners::PurePursuitLocalPlanner"
+         base_class_type="nav_core::BaseLocalPlanner">
+    <description>
+      A local planner that implements the Pure Pursuit path tracking algorithm.
+    </description>
+  </class>
+</library>
