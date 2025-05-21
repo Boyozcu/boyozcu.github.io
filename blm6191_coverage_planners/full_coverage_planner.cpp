@@ -142,17 +142,17 @@ bool FullCoveragePlanner::isObstacle(double world_x, double world_y) {
         return true; 
     }
 
-    // Check a 3x3 grid around the point for safety
-    for(int dx = -1; dx <= 1; dx++) {
-        for(int dy = -1; dy <= 1; dy++) {
+    // Check a 5x5 grid around the point for better safety margin
+    for(int dx = -2; dx <= 2; dx++) {
+        for(int dy = -2; dy <= 2; dy++) {
             int check_x = map_x + dx;
             int check_y = map_y + dy;
             
             if(check_x >= 0 && check_x < costmap_->getSizeInCellsX() &&
                check_y >= 0 && check_y < costmap_->getSizeInCellsY()) {
                 unsigned char cost = costmap_->getCost(check_x, check_y);
-                // Consider both lethal and inscribed obstacles as blocking
-                if(cost >= costmap_2d::INSCRIBED_INFLATED_OBSTACLE || cost == costmap_2d::LETHAL_OBSTACLE) {
+                // Consider any non-zero cost as potential obstacle
+                if(cost > 0) {
                     ROS_DEBUG_THROTTLE(0.5, "[FCP::isObstacle] OBSTACLE DETECTED near (%.2f, %.2f) -> Cost: %d", world_x, world_y, cost);
                     return true;
                 }

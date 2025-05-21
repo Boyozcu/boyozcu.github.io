@@ -16,8 +16,8 @@ FullCoveragePlanner:
   p4_y: -2.0
 
 PurePursuitLocalPlanner:
-  lookahead_distance: 0.6
-  linear_vel: 0.08
-  max_angular_vel: 0.45
-  goal_dist_tolerance: 0.12
+  lookahead_distance: 0.4
+  linear_vel: 0.05
+  max_angular_vel: 0.35
+  goal_dist_tolerance: 0.08
   robot_base_frame: "base_footprint"
