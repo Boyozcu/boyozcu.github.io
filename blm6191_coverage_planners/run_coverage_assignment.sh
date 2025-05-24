@@ -1,5 +1,5 @@
 #!/bin/bash
-# set -x # Hata ayıklama için: Çalıştırılan her komutu gösterir. Debug sonrası kaldırın.
+# set -x # Hata ayıklama için: Çalıştıran her komutu gösterir. Debug sonrası kaldırın.
 
 # === Betik Başlangıcı ve İlk Ortam Ayarlama ===
 echo "--- Script Başlangıcı: Ortam Ayarlanıyor ---"
@@ -73,13 +73,6 @@ CFG_controller_frequency="10.0"
 CFG_use_param_poly="true"
 CFG_launch_polygon_publisher="false"
 CFG_launch_polygon_visualizer="true"
-
-# Willow Garage ortasındaki büyük masa (yaklaşık X: -0.7 ila 0.7, Y: -0.2 ila 0.2)
-# Bu poligon, masanın etrafını ve biraz daha geniş bir alanı kapsar.
-CFG_p1x="-2.5"; CFG_p1y="1.8"    # Sol Üst
-CFG_p2x="2.5";  CFG_p2y="1.8"    # Sağ Üst
-CFG_p3x="2.5";  CFG_p3y="-1.8"   # Sağ Alt
-CFG_p4x="-2.5"; CFG_p4y="-1.8"   # Sol Alt
 
 PERFORM_CATKIN_MAKE_AT_START=false
 # === Konfigürasyon Sonu ===
@@ -215,10 +208,6 @@ log_message "Navigasyon (move_base - ${CUSTOM_MOVE_BASE_LAUNCH_FILE_NAME}) başl
     use_param_poly_val:="$CFG_use_param_poly" \
     launch_polygon_publisher_val:="$CFG_launch_polygon_publisher" \
     launch_polygon_visualizer_val:="$CFG_launch_polygon_visualizer" \
-    p1x_val:="$CFG_p1x" p1y_val:="$CFG_p1y" \
-    p2x_val:="$CFG_p2x" p2y_val:="$CFG_p2y" \
-    p3x_val:="$CFG_p3x" p3y_val:="$CFG_p3y" \
-    p4x_val:="$CFG_p4x" p4y_val:="$CFG_p4y" \
 ) >> "$LOG_FILE" 2>&1 &
 PIDS[move_base]=$!
 log_message "Move_base launch PID: ${PIDS[move_base]}. Başlaması için 10 sn bekleniyor..."

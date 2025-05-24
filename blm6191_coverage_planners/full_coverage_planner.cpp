@@ -132,30 +132,17 @@ bool FullCoveragePlanner::isPointInPolygon(const geometry_msgs::Point& p, const 
 }
 
 bool FullCoveragePlanner::isObstacle(double world_x, double world_y) {
-    if (!costmap_) { 
-        ROS_ERROR_THROTTLE(1.0, "[FCP::isObstacle] Costmap is NULL! Assuming obstacle."); 
-        return true; 
-    }
+    if (!costmap_) return true;
     unsigned int map_x, map_y;
-    if (!costmap_->worldToMap(world_x, world_y, map_x, map_y)) {
-        ROS_DEBUG_THROTTLE(2.0, "[FCP::isObstacle] Point (%.2f, %.2f) is OUTSIDE costmap bounds. Treating as obstacle.", world_x, world_y);
-        return true; 
-    }
-
-    // Check a 5x5 grid around the point for better safety margin
-    for(int dx = -2; dx <= 2; dx++) {
-        for(int dy = -2; dy <= 2; dy++) {
-            int check_x = map_x + dx;
-            int check_y = map_y + dy;
-            
-            if(check_x >= 0 && check_x < costmap_->getSizeInCellsX() &&
-               check_y >= 0 && check_y < costmap_->getSizeInCellsY()) {
-                unsigned char cost = costmap_->getCost(check_x, check_y);
-                // Consider any non-zero cost as potential obstacle
-                if(cost > 0) {
-                    ROS_DEBUG_THROTTLE(0.5, "[FCP::isObstacle] OBSTACLE DETECTED near (%.2f, %.2f) -> Cost: %d", world_x, world_y, cost);
+    if (!costmap_->worldToMap(world_x, world_y, map_x, map_y)) return true;
+    int radius_cells = std::ceil(robot_radius_ / costmap_->getResolution());
+    for (int dx = -radius_cells; dx <= radius_cells; dx++) {
+        for (int dy = -radius_cells; dy <= radius_cells; dy++) {
+            int cx = map_x + dx, cy = map_y + dy;
+            if (cx >= 0 && cx < (int)costmap_->getSizeInCellsX() && cy >= 0 && cy < (int)costmap_->getSizeInCellsY()) {
+                unsigned char cost = costmap_->getCost(cx, cy);
+                if (cost == costmap_2d::LETHAL_OBSTACLE || cost >= costmap_2d::INSCRIBED_INFLATED_OBSTACLE || cost == costmap_2d::NO_INFORMATION)
                     return true;
-                }
             }
         }
     }
@@ -247,7 +234,7 @@ void FullCoveragePlanner::generateBoustrophedonPath(
     // Sınırlardan ne kadar içeri çekileceği.
     // Bu, robotun enflasyon dahil kapladığı alandan büyük olmalı.
     // robot_radius_ parametresi zaten bu efektif yarıçapı temsil etmeli.
-    double boundary_clearance = robot_radius_; 
+    double boundary_clearance = robot_radius_ * 0.7;
 
 
     bool current_sweep_is_left_to_right = true;
