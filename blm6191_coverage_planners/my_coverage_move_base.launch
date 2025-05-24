@@ -18,6 +18,9 @@
   <arg name="launch_polygon_publisher_val" default="false"/>
   <arg name="launch_polygon_visualizer_val" default="true"/>
 
+  <!-- Load all planner params globally -->
+  <rosparam file="$(find blm6191_coverage_planners)/planner_params.yaml" command="load" ns="/" />
+
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
     <param name="base_global_planner" value="$(arg base_global_planner)"/>
     <param name="base_local_planner" value="$(arg base_local_planner)"/>
@@ -27,7 +30,6 @@
     <rosparam file="$(find blm6191_coverage_planners)/costmap_common_params.yaml" command="load" ns="local_costmap" />
     <rosparam file="$(find blm6191_coverage_planners)/local_costmap_params.yaml" command="load" />
     <rosparam file="$(find blm6191_coverage_planners)/global_costmap_params.yaml" command="load" />
-    <rosparam file="$(find blm6191_coverage_planners)/planner_params.yaml" command="load" />
 
     <!-- FullCoveragePlanner ROS Parametreleri -->
     <param name="FullCoveragePlanner/robot_radius" value="$(arg robot_radius_val)"/>

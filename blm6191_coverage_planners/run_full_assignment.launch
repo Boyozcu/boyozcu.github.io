@@ -56,10 +56,6 @@
     <arg name="sweep_spacing_factor_val" value="$(arg sweep_spacing_factor)"/>
     <arg name="path_point_distance_val" value="$(arg path_point_distance)"/>
     <arg name="use_param_poly_val" value="$(arg use_param_poly)"/>
-    <arg name="p1x_val" value="$(arg p1x)"/> <arg name="p1y_val" value="$(arg p1y)"/>
-    <arg name="p2x_val" value="$(arg p2x)"/> <arg name="p2y_val" value="$(arg p2y)"/>
-    <arg name="p3x_val" value="$(arg p3x)"/> <arg name="p3y_val" value="$(arg p3y)"/>
-    <arg name="p4x_val" value="$(arg p4x)"/> <arg name="p4y_val" value="$(arg p4y)"/>
     <!-- PurePursuitLocalPlanner argümanları -->
     <arg name="lookahead_val" value="$(arg lookahead_distance)"/>
     <arg name="linear_vel_val" value="$(arg linear_vel)"/>
@@ -79,5 +75,8 @@
   <node name="teleop_reminder" pkg="rostopic" type="rostopic"
         args="echo 'TELEOP REMINDER: To manually control the robot for mapping, open a new terminal and run: roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch'"
         output="screen" launch-prefix="bash -c 'sleep 15; $0 $@'"/>
+
+  <!-- Load all planner params globally -->
+  <rosparam file="$(find blm6191_coverage_planners)/planner_params.yaml" command="load" ns="/" />
 
 </launch>
