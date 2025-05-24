@@ -3,8 +3,8 @@ raytrace_range: 3.0
 
 footprint: [[-0.07, -0.07], [-0.07, 0.07], [0.07, 0.07], [0.07, -0.07]]
 
-inflation_radius: 0.40  # Yüksek bir değerle başlayalım
-cost_scaling_factor: 10.0
+inflation_radius: 0.25  # Biraz artırıldı, engellerden daha fazla uzaklaşmak için
+cost_scaling_factor: 5.0
 
 observation_sources: laser_scan_sensor
 laser_scan_sensor: {sensor_frame: base_scan, data_type: LaserScan, topic: scan, marking: true, clearing: true}

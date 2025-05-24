@@ -26,26 +26,25 @@ void FullCoveragePlanner::initialize(std::string name, costmap_2d::Costmap2DROS*
             costmap_ = costmap_ros_->getCostmap();
         } else {
             ROS_ERROR("[%s] Costmap ROS Wrapper is null in initialize. Cannot get costmap.", name.c_str());
-            return; 
+            return;
         }
-        if (!costmap_) { 
+        if (!costmap_) {
              ROS_ERROR("[%s] Failed to get costmap from ROS Wrapper in initialize.", name.c_str());
-             return; 
+             return;
         }
 
         ros::NodeHandle private_nh("~/" + name);
-        // Betikteki CFG_ değişkenleriyle eşleşen varsayılan değerler
-        private_nh.param("robot_radius", robot_radius_, 0.28); 
-        private_nh.param("sweep_spacing_factor", sweep_spacing_factor_, 0.65); 
-        private_nh.param("path_point_distance", path_point_distance_, 0.07); 
+        private_nh.param("robot_radius", robot_radius_, 0.17);
+        private_nh.param("sweep_spacing_factor", sweep_spacing_factor_, 0.9);
+        private_nh.param("path_point_distance", path_point_distance_, 0.1);
         private_nh.param("frame_id", frame_id_, std::string("map"));
         private_nh.param("use_param_poly", use_param_poly_, true);
 
         if (use_param_poly_) {
-            private_nh.param("p1_x", p1x_, -3.5); private_nh.param("p1_y", p1y_, 2.2); 
-            private_nh.param("p2_x", p2x_, 3.5);  private_nh.param("p2_y", p2y_, 2.2);
-            private_nh.param("p3_x", p3x_, 3.5);  private_nh.param("p3_y", p3y_, -2.0);
-            private_nh.param("p4_x", p4x_, -3.5); private_nh.param("p4_y", p4y_, -2.0);
+            private_nh.param("p1_x", p1x_, 0.0); private_nh.param("p1_y", p1y_, 0.0);
+            private_nh.param("p2_x", p2x_, 0.0); private_nh.param("p2_y", p2y_, 0.0);
+            private_nh.param("p3_x", p3x_, 0.0); private_nh.param("p3_y", p3y_, 0.0);
+            private_nh.param("p4_x", p4x_, 0.0); private_nh.param("p4_y", p4y_, 0.0);
             
             polygon_corners_msg_.resize(4);
             polygon_corners_msg_[0].x = p1x_; polygon_corners_msg_[0].y = p1y_;
@@ -59,8 +58,7 @@ void FullCoveragePlanner::initialize(std::string name, costmap_2d::Costmap2DROS*
         
         plan_pub_ = private_nh.advertise<nav_msgs::Path>("coverage_plan", 1);
         initialized_ = true;
-        ROS_INFO("[%s] FullCoveragePlanner initialized. RobotRadius=%.2f, SweepFactor=%.2f, PointDist=%.2f.",
-                 name.c_str(), robot_radius_, sweep_spacing_factor_, path_point_distance_);
+        ROS_INFO("[%s] FullCoveragePlanner initialized.", name.c_str());
     }
 }
 
@@ -79,15 +77,14 @@ void FullCoveragePlanner::polygonCallback(const geometry_msgs::PolygonStamped::C
 bool FullCoveragePlanner::makePlan(const geometry_msgs::PoseStamped& start,
                                    const geometry_msgs::PoseStamped& goal,
                                    std::vector<geometry_msgs::PoseStamped>& plan) {
-    plan.clear(); 
     if (!initialized_ || polygon_corners_msg_.size() != 4 || !costmap_) {
-        ROS_ERROR_COND(!initialized_, "[FCP::makePlan] Not initialized.");
-        ROS_ERROR_COND(polygon_corners_msg_.size() != 4, "[FCP::makePlan] Polygon not defined (4 corners needed). Current size: %zu", polygon_corners_msg_.size());
-        ROS_ERROR_COND(!costmap_, "[FCP::makePlan] Costmap not available.");
-        return false; 
+        ROS_ERROR_COND(!initialized_, "[FullCoveragePlanner] Not initialized.");
+        ROS_ERROR_COND(polygon_corners_msg_.size() != 4, "[FullCoveragePlanner] Polygon not defined (4 corners needed).");
+        ROS_ERROR_COND(!costmap_, "[FullCoveragePlanner] Costmap not available.");
+        return false;
     }
 
-    ROS_INFO("[FCP::makePlan] Generating Boustrophedon coverage plan...");
+    plan.clear();
     std::vector<geometry_msgs::Point> poly_corners_geom(polygon_corners_msg_.size());
     for(size_t i=0; i < polygon_corners_msg_.size(); ++i) {
         poly_corners_geom[i].x = polygon_corners_msg_[i].x;
@@ -108,10 +105,10 @@ bool FullCoveragePlanner::makePlan(const geometry_msgs::PoseStamped& start,
             gui_path.poses[i] = plan[i];
         }
         plan_pub_.publish(gui_path);
-        ROS_INFO("[FCP::makePlan] Plan generated with %zu points.", plan.size());
+        ROS_INFO("[FullCoveragePlanner] Plan generated with %zu points.", plan.size());
         return true;
     } else {
-        ROS_WARN("[FCP::makePlan] Generated plan is empty by generateBoustrophedonPath.");
+        ROS_WARN("[FullCoveragePlanner] Generated plan is empty.");
         return false;
     }
 }
@@ -134,19 +131,11 @@ bool FullCoveragePlanner::isPointInPolygon(const geometry_msgs::Point& p, const 
 bool FullCoveragePlanner::isObstacle(double world_x, double world_y) {
     if (!costmap_) return true;
     unsigned int map_x, map_y;
-    if (!costmap_->worldToMap(world_x, world_y, map_x, map_y)) return true;
-    int radius_cells = std::ceil(robot_radius_ / costmap_->getResolution());
-    for (int dx = -radius_cells; dx <= radius_cells; dx++) {
-        for (int dy = -radius_cells; dy <= radius_cells; dy++) {
-            int cx = map_x + dx, cy = map_y + dy;
-            if (cx >= 0 && cx < (int)costmap_->getSizeInCellsX() && cy >= 0 && cy < (int)costmap_->getSizeInCellsY()) {
-                unsigned char cost = costmap_->getCost(cx, cy);
-                if (cost == costmap_2d::LETHAL_OBSTACLE || cost >= costmap_2d::INSCRIBED_INFLATED_OBSTACLE || cost == costmap_2d::NO_INFORMATION)
-                    return true;
-            }
-        }
+    if (!costmap_->worldToMap(world_x, world_y, map_x, map_y)) {
+        return true;
     }
-    return false;
+    unsigned char cost = costmap_->getCost(map_x, map_y);
+    return (cost >= costmap_2d::INSCRIBED_INFLATED_OBSTACLE && cost != costmap_2d::NO_INFORMATION);
 }
 
 bool FullCoveragePlanner::findClearPathSegment(const geometry_msgs::Point& start_p, const geometry_msgs::Point& end_p,
@@ -156,15 +145,14 @@ bool FullCoveragePlanner::findClearPathSegment(const geometry_msgs::Point& start
     double dx = end_p.x - start_p.x;
     double dy = end_p.y - start_p.y;
     double distance = std::hypot(dx, dy);
-    double check_resolution = costmap_ ? std::max(costmap_->getResolution() * 0.5, 0.02) : 0.02; 
-    if (check_resolution < 0.01) check_resolution = 0.01;
+    double effective_ppd = std::max(path_point_distance_ * 0.5, costmap_ ? costmap_->getResolution() : 0.01);
+    if (effective_ppd < 0.01) effective_ppd = 0.01;
 
-    if (distance < check_resolution / 2.0) {
+    if (distance < effective_ppd / 2.0) {
         if(!isObstacle(end_p.x, end_p.y) && isPointInPolygon(end_p, current_polygon_geom)) {
             geometry_msgs::PoseStamped pose;
-            pose.header.frame_id = frame_id_; 
-            pose.header.stamp = ros::Time::now();
-            pose.pose.position = end_p; pose.pose.position.z = 0.01;
+            pose.pose.position = end_p;
+            pose.pose.position.z = 0.01;
             tf2::Quaternion q_tf; q_tf.setRPY(0,0,orientation_yaw);
             pose.pose.orientation = tf2::toMsg(q_tf);
             segment_plan.push_back(pose);
@@ -173,7 +161,7 @@ bool FullCoveragePlanner::findClearPathSegment(const geometry_msgs::Point& start
         return false;
     }
 
-    int num_steps = static_cast<int>(distance / check_resolution);
+    int num_steps = static_cast<int>(distance / effective_ppd);
     if (num_steps <= 0) num_steps = 1;
 
     for (int i = 0; i <= num_steps; ++i) {
@@ -188,28 +176,24 @@ bool FullCoveragePlanner::findClearPathSegment(const geometry_msgs::Point& start
             return false;
         }
         geometry_msgs::PoseStamped pose;
-        pose.header.frame_id = frame_id_; 
-        pose.header.stamp = ros::Time::now();
-        pose.pose.position = current_p; pose.pose.position.z = 0.01;
-        tf2::Quaternion q_tf; q_tf.setRPY(0, 0, orientation_yaw);
+        pose.pose.position = current_p;
+        pose.pose.position.z = 0.01;
+        tf2::Quaternion q_tf;
+        q_tf.setRPY(0, 0, orientation_yaw);
         pose.pose.orientation = tf2::toMsg(q_tf);
         segment_plan.push_back(pose);
     }
     return true;
 }
 
-
 void FullCoveragePlanner::generateBoustrophedonPath(
     const std::vector<geometry_msgs::Point>& poly_corners_geom,
     const geometry_msgs::PoseStamped& start_pose_unused,
     std::vector<geometry_msgs::PoseStamped>& plan) {
 
-    plan.clear();
-    ROS_INFO("[FCP::GenPath] Starting Boustrophedon generation. Polygon size: %zu", poly_corners_geom.size());
-
-    if (poly_corners_geom.size() != 4) { ROS_ERROR("[FCP::GenPath] Polygon != 4 corners."); return; }
-    if (robot_radius_ <= 0 || sweep_spacing_factor_ <= 0 || path_point_distance_ <= 0) { ROS_ERROR("[FCP::GenPath] Invalid planner params"); return; }
-    if (!costmap_) { ROS_ERROR("[FCP::GenPath] Costmap unavailable!"); return; }
+    if (poly_corners_geom.size() != 4) { ROS_ERROR("[FullCoveragePlanner::generateBoustrophedonPath] Polygon != 4 corners."); return; }
+    if (robot_radius_ <= 0 || sweep_spacing_factor_ <= 0 || path_point_distance_ <= 0) { ROS_ERROR("[FullCoveragePlanner::generateBoustrophedonPath] Invalid params"); return; }
+    if (!costmap_) { ROS_ERROR("[FullCoveragePlanner::generateBoustrophedonPath] Costmap unavailable!"); return; }
     
     double min_x_poly = poly_corners_geom[0].x, max_x_poly = poly_corners_geom[0].x;
     double min_y_poly = poly_corners_geom[0].y, max_y_poly = poly_corners_geom[0].y;
@@ -219,36 +203,25 @@ void FullCoveragePlanner::generateBoustrophedonPath(
         min_y_poly = std::min(min_y_poly, poly_corners_geom[i].y);
         max_y_poly = std::max(max_y_poly, poly_corners_geom[i].y);
     }
-    ROS_INFO("[FCP::GenPath] Polygon Bounds: X[%.2f, %.2f], Y[%.2f, %.2f]", min_x_poly, max_x_poly, min_y_poly, max_y_poly);
 
     double line_separation = (2.0 * robot_radius_) * sweep_spacing_factor_;
-    double map_res = costmap_->getResolution();
-    if (line_separation < map_res * 1.5 ){ 
-        line_separation = map_res * 1.5; 
-        ROS_WARN("[FCP::GenPath] Sweep separation (was %.2f) adjusted to %.2f.", (2.0 * robot_radius_) * sweep_spacing_factor_, line_separation);
+    if (line_separation < costmap_->getResolution() * 1.5 ){ 
+        line_separation = costmap_->getResolution() * 1.5; 
+        ROS_WARN("[FullCoveragePlanner] Sweep separation adjusted to %.2f due to map resolution.", line_separation);
     }
-    double effective_path_pt_dist = std::max(path_point_distance_, map_res);
-    ROS_INFO("[FCP::GenPath] Config: RobotRadius=%.2f, SweepSpacingFactor=%.2f => LineSeparation=%.2f. EffectivePointDist=%.2f", 
-             robot_radius_, sweep_spacing_factor_, line_separation, effective_path_pt_dist);
+    double effective_path_pt_dist = std::max(path_point_distance_, costmap_->getResolution());
 
-    // Sınırlardan ne kadar içeri çekileceği.
-    // Bu, robotun enflasyon dahil kapladığı alandan büyük olmalı.
-    // robot_radius_ parametresi zaten bu efektif yarıçapı temsil etmeli.
-    double boundary_clearance = robot_radius_ * 0.7;
-
-
-    bool current_sweep_is_left_to_right = true;
-    double yaw_l_to_r = 0.0;    
-    double yaw_r_to_l = M_PI;   
+    bool current_sweep_left_to_right = true; // Düzeltilmiş değişken adı
+    double yaw_l_to_r = 0.0;
+    double yaw_r_to_l = M_PI;
     
-    geometry_msgs::PoseStamped last_valid_pose_on_plan;
-    bool plan_already_has_points = false;
+    geometry_msgs::PoseStamped last_valid_pose_on_plan; // Tanımlandı
+    bool plan_already_has_points = false; // Tanımlandı ve adı düzeltildi
 
-    for (double y_sweep_center = min_y_poly + boundary_clearance; 
-         y_sweep_center <= max_y_poly - boundary_clearance; 
+    for (double y_sweep_center = min_y_poly + robot_radius_; 
+         y_sweep_center <= max_y_poly - robot_radius_; 
          y_sweep_center += line_separation) {
         
-        ROS_DEBUG("[FCP::GenPath] Current Y-sweep center: %.3f", y_sweep_center);
         std::vector<double> x_intersections_on_line;
         for (size_t i = 0; i < poly_corners_geom.size(); ++i) {
             const auto& p1 = poly_corners_geom[i];
@@ -256,7 +229,7 @@ void FullCoveragePlanner::generateBoustrophedonPath(
             if (std::abs(p1.y - p2.y) > 1e-6) { 
                 if ((y_sweep_center >= std::min(p1.y, p2.y) - 1e-6) && (y_sweep_center <= std::max(p1.y, p2.y) + 1e-6)) {
                     double intersect_x = p1.x + (p2.x - p1.x) * (y_sweep_center - p1.y) / (p2.y - p1.y);
-                    if (intersect_x >= min_x_poly - 1e-3 && intersect_x <= max_x_poly + 1e-3) {
+                    if (intersect_x >= min_x_poly - robot_radius_ && intersect_x <= max_x_poly + robot_radius_) {
                          x_intersections_on_line.push_back(intersect_x);
                     }
                 }
@@ -265,130 +238,107 @@ void FullCoveragePlanner::generateBoustrophedonPath(
         std::sort(x_intersections_on_line.begin(), x_intersections_on_line.end());
         x_intersections_on_line.erase(std::unique(x_intersections_on_line.begin(), x_intersections_on_line.end(), 
                                      [](double a, double b){ return std::abs(a-b) < 1e-5; }), x_intersections_on_line.end());
-        
-        if (x_intersections_on_line.size() < 2 || x_intersections_on_line.size() % 2 != 0) {
-            ROS_DEBUG("[FCP::GenPath] Y=%.3f, Not enough or odd intersections (%zu). Skipping this Y sweep.", y_sweep_center, x_intersections_on_line.size());
-            continue;
-        }
 
-        double current_active_sweep_yaw = current_sweep_is_left_to_right ? yaw_l_to_r : yaw_r_to_l;
+        double current_sweep_yaw = current_sweep_left_to_right ? yaw_l_to_r : yaw_r_to_l; // Düzeltilmiş değişken adı
 
         for (size_t k = 0; k + 1 < x_intersections_on_line.size(); k += 2) {
-            double x_seg_raw_start = x_intersections_on_line[k];
-            double x_seg_raw_end = x_intersections_on_line[k+1];
+            double x_raw_start = x_intersections_on_line[k];
+            double x_raw_end = x_intersections_on_line[k+1];
 
             geometry_msgs::Point mid_p_seg_test; 
-            mid_p_seg_test.x = (x_seg_raw_start + x_seg_raw_end) / 2.0; mid_p_seg_test.y = y_sweep_center;
+            mid_p_seg_test.x = (x_raw_start + x_raw_end) / 2.0; 
+            mid_p_seg_test.y = y_sweep_center;
             if (!isPointInPolygon(mid_p_seg_test, poly_corners_geom)) {
-                ROS_DEBUG("[FCP::GenPath]   Y=%.3f, Midpoint of raw_segment X(%.2f, %.2f) is outside polygon. Skipping.", y_sweep_center, x_seg_raw_start, x_seg_raw_end);
                 continue; 
             }
             
-            double x_eff_start = x_seg_raw_start + boundary_clearance;
-            double x_eff_end   = x_seg_raw_end   - boundary_clearance;
+            double x_eff_start = x_raw_start + robot_radius_;
+            double x_eff_end   = x_raw_end   - robot_radius_;
 
-            if (x_eff_start >= x_eff_end - effective_path_pt_dist / 2.0) {
-                ROS_DEBUG("[FCP::GenPath]   Y=%.3f, Effective segment X_eff(%.2f to %.2f) too short. Raw X(%.2f, %.2f). RobotRadius used for offset: %.2f. Skipping.", 
-                          y_sweep_center, x_eff_start, x_eff_end, x_seg_raw_start, x_seg_raw_end, boundary_clearance);
-                continue;
-            }
+            if (x_eff_start >= x_eff_end - effective_path_pt_dist / 2.0) continue;
 
             double x_iter, x_limit_iter, x_step_iter;
-            if (current_sweep_is_left_to_right) {
+            if (current_sweep_left_to_right) { // Düzeltilmiş değişken adı
                 x_iter = x_eff_start; x_limit_iter = x_eff_end; x_step_iter = effective_path_pt_dist;
             } else {
                 x_iter = x_eff_end; x_limit_iter = x_eff_start; x_step_iter = -effective_path_pt_dist;
             }
-            ROS_DEBUG("[FCP::GenPath]     Sweep SubSeg Y=%.3f: X_eff from %.2f to %.2f. LtoR: %d", 
-                      y_sweep_center, x_iter, x_limit_iter, current_sweep_is_left_to_right);
 
-            std::vector<geometry_msgs::PoseStamped> points_on_this_sub_segment;
-            bool sub_segment_obstructed_midway = false;
-            
-            for (double current_x = x_iter; 
-                 (current_sweep_is_left_to_right ? current_x <= x_limit_iter + 1e-3 : current_x >= x_limit_iter - 1e-3); 
-                 current_x += x_step_iter) {
-                
-                geometry_msgs::Point candidate_pt;
-                candidate_pt.x = current_x; candidate_pt.y = y_sweep_center; candidate_pt.z = 0.0;
-                bool obs = isObstacle(current_x, y_sweep_center);
-                bool in_poly = isPointInPolygon(candidate_pt, poly_corners_geom);
-                
-                if (in_poly && !obs) {
-                    if(sub_segment_obstructed_midway){ 
-                        if(!points_on_this_sub_segment.empty()){
-                            if (plan_already_has_points) {
-                                std::vector<geometry_msgs::PoseStamped> turning_nodes;
-                                tf2::Quaternion q_prev_tf; tf2::fromMsg(last_valid_pose_on_plan.pose.orientation, q_prev_tf);
-                                double r,p,yaw_prev; tf2::Matrix3x3(q_prev_tf).getRPY(r,p,yaw_prev);
-                                if(findClearPathSegment(last_valid_pose_on_plan.pose.position, points_on_this_sub_segment.front().pose.position, turning_nodes, yaw_prev, poly_corners_geom)){
-                                    plan.insert(plan.end(), turning_nodes.begin(), turning_nodes.end());
+            std::vector<geometry_msgs::PoseStamped> current_sub_segment_plan;
+            bool obstructed_on_this_sub_segment = false;
+
+            while ((current_sweep_left_to_right ? x_iter <= x_limit_iter + 1e-3 : x_iter >= x_limit_iter - 1e-3)) { // Düzeltilmiş değişken adı
+                geometry_msgs::Point current_point_candidate;
+                current_point_candidate.x = x_iter;
+                current_point_candidate.y = y_sweep_center;
+                current_point_candidate.z = 0.0;
+
+                if (isPointInPolygon(current_point_candidate, poly_corners_geom) && !isObstacle(x_iter, y_sweep_center)) {
+                    if (obstructed_on_this_sub_segment) { 
+                        if (!current_sub_segment_plan.empty()) {
+                             if (plan_already_has_points) { // Düzeltilmiş değişken adı
+                                std::vector<geometry_msgs::PoseStamped> turning_path_nodes;
+                                tf2::Quaternion q_prev_orient_tf; tf2::fromMsg(last_valid_pose_on_plan.pose.orientation, q_prev_orient_tf);
+                                double r,p,yaw_prev; tf2::Matrix3x3(q_prev_orient_tf).getRPY(r,p,yaw_prev);
+                                if (findClearPathSegment(last_valid_pose_on_plan.pose.position, current_sub_segment_plan.front().pose.position, turning_path_nodes, yaw_prev, poly_corners_geom)) {
+                                    plan.insert(plan.end(), turning_path_nodes.begin(), turning_path_nodes.end());
                                 }
                             }
-                            plan.insert(plan.end(), points_on_this_sub_segment.begin(), points_on_this_sub_segment.end());
-                            if(!plan.empty()){ last_valid_pose_on_plan = plan.back(); plan_already_has_points = true;}
+                            plan.insert(plan.end(), current_sub_segment_plan.begin(), current_sub_segment_plan.end());
+                            if (!plan.empty()) {last_valid_pose_on_plan = plan.back(); plan_already_has_points = true;} // Düzeltilmiş değişken adı
+                            current_sub_segment_plan.clear();
                         }
-                        points_on_this_sub_segment.clear();
-                        sub_segment_obstructed_midway = false;
-                        ROS_DEBUG("[FCP::GenPath]       New clear sub-segment started at X=%.2f after obstacle.", current_x);
+                        obstructed_on_this_sub_segment = false; 
                     }
-                    geometry_msgs::PoseStamped pose;
-                    pose.header.frame_id = frame_id_; pose.header.stamp = ros::Time::now();
-                    pose.pose.position = candidate_pt; pose.pose.position.z = 0.01; 
-                    tf2::Quaternion q_tf; q_tf.setRPY(0, 0, current_active_sweep_yaw);
-                    pose.pose.orientation = tf2::toMsg(q_tf);
-                    points_on_this_sub_segment.push_back(pose);
+
+                    geometry_msgs::PoseStamped new_pose;
+                    new_pose.pose.position = current_point_candidate;
+                    new_pose.pose.position.z = 0.01;
+                    tf2::Quaternion q_tf;
+                    q_tf.setRPY(0, 0, current_sweep_yaw);
+                    new_pose.pose.orientation = tf2::toMsg(q_tf);
+                    current_sub_segment_plan.push_back(new_pose);
                 } else { 
-                    if (!sub_segment_obstructed_midway) { 
-                         ROS_DEBUG("[FCP::GenPath]       Obstacle or outside polygon at X=%.2f, Y=%.2f. InPoly: %d, Obstacle: %d. Sub-segment ending.", current_x, y_sweep_center, in_poly, obs);
-                    }
-                    sub_segment_obstructed_midway = true;
-                    if (!points_on_this_sub_segment.empty()) { 
-                        if (plan_already_has_points) {
-                             std::vector<geometry_msgs::PoseStamped> turning_nodes;
-                            tf2::Quaternion q_prev_tf; tf2::fromMsg(last_valid_pose_on_plan.pose.orientation, q_prev_tf);
-                            double r,p,yaw_prev; tf2::Matrix3x3(q_prev_tf).getRPY(r,p,yaw_prev);
-                            if(findClearPathSegment(last_valid_pose_on_plan.pose.position, points_on_this_sub_segment.front().pose.position, turning_nodes, yaw_prev, poly_corners_geom)){
-                                plan.insert(plan.end(), turning_nodes.begin(), turning_nodes.end());
+                    obstructed_on_this_sub_segment = true;
+                    if (!current_sub_segment_plan.empty()) { 
+                         if (plan_already_has_points) { // Düzeltilmiş değişken adı
+                            std::vector<geometry_msgs::PoseStamped> turning_path_nodes;
+                            tf2::Quaternion q_prev_orient_tf; tf2::fromMsg(last_valid_pose_on_plan.pose.orientation, q_prev_orient_tf);
+                            double r,p,yaw_prev; tf2::Matrix3x3(q_prev_orient_tf).getRPY(r,p,yaw_prev);
+                            if (findClearPathSegment(last_valid_pose_on_plan.pose.position, current_sub_segment_plan.front().pose.position, turning_path_nodes, yaw_prev, poly_corners_geom)) {
+                                plan.insert(plan.end(), turning_path_nodes.begin(), turning_path_nodes.end());
                             }
                         }
-                        plan.insert(plan.end(), points_on_this_sub_segment.begin(), points_on_this_sub_segment.end());
-                        if(!plan.empty()){ last_valid_pose_on_plan = plan.back(); plan_already_has_points = true;}
+                        plan.insert(plan.end(), current_sub_segment_plan.begin(), current_sub_segment_plan.end());
+                        if (!plan.empty()) { last_valid_pose_on_plan = plan.back(); plan_already_has_points = true;} // Düzeltilmiş değişken adı
+                        current_sub_segment_plan.clear();
                     }
-                    points_on_this_sub_segment.clear(); 
-                    // Basit engel atlama: Eğer bir engel varsa, bir sonraki path_point_distance kadar atla
-                    // Bu, geniş engelleri geçmek için yeterli olmayabilir.
-                    // if (current_sweep_is_left_to_right) x_iter += effective_path_pt_dist; else x_iter -= effective_path_pt_dist;
-                    // continue; // Bu döngüden çıkıp bir sonraki x_iter'e geçmek yerine, doğrudan for döngüsünün bir sonraki adımına geçelim.
+                    if(current_sweep_left_to_right) x_iter += robot_radius_ * 1.5; else x_iter -= robot_radius_ * 1.5; // Düzeltilmiş değişken adı
+                    continue;
                 }
-                 if (!sub_segment_obstructed_midway) { // Eğer hala engellenmediyse normal adımla devam et
-                    // x_iter += x_step_iter; // Bu satır zaten for döngüsünün sonunda var.
-                 } else if (sub_segment_obstructed_midway && points_on_this_sub_segment.empty()){
-                     // Engelle başladıysak ve hiç nokta ekleyemediysek, x_iter'i ilerletmeye devam et.
-                     // Bu, engelin ne kadar geniş olduğunu görmek için.
-                 }
-            } // End of X iteration for a sub-segment
-            
-            if (!points_on_this_sub_segment.empty()) { // Kalan son alt segmenti ekle
-                if (plan_already_has_points) {
-                    std::vector<geometry_msgs::PoseStamped> turning_nodes;
-                    tf2::Quaternion q_prev_tf; tf2::fromMsg(last_valid_pose_on_plan.pose.orientation, q_prev_tf);
-                    double r,p,yaw_prev; tf2::Matrix3x3(q_prev_tf).getRPY(r,p,yaw_prev);
-                     if(findClearPathSegment(last_valid_pose_on_plan.pose.position, points_on_this_sub_segment.front().pose.position, turning_nodes, yaw_prev, poly_corners_geom)){
-                        plan.insert(plan.end(), turning_nodes.begin(), turning_nodes.end());
-                    }
-                }
-                plan.insert(plan.end(), points_on_this_sub_segment.begin(), points_on_this_sub_segment.end());
-                if (!plan.empty()) {last_valid_pose_on_plan = plan.back(); plan_already_has_points = true;}
+                x_iter += x_step_iter;
             }
-        } // End of X intersection pairs loop
-        current_sweep_is_left_to_right = !current_sweep_is_left_to_right;
-    } // End of Y sweep loop
+            if (!current_sub_segment_plan.empty()) {
+                if (plan_already_has_points) { // Düzeltilmiş değişken adı
+                    std::vector<geometry_msgs::PoseStamped> turning_path_nodes;
+                    tf2::Quaternion q_prev_orient_tf; tf2::fromMsg(last_valid_pose_on_plan.pose.orientation, q_prev_orient_tf);
+                    double r,p,yaw_prev; tf2::Matrix3x3(q_prev_orient_tf).getRPY(r,p,yaw_prev);
+                    if (findClearPathSegment(last_valid_pose_on_plan.pose.position, current_sub_segment_plan.front().pose.position, turning_path_nodes, yaw_prev, poly_corners_geom)) {
+                        plan.insert(plan.end(), turning_path_nodes.begin(), turning_path_nodes.end());
+                    }
+                }
+                plan.insert(plan.end(), current_sub_segment_plan.begin(), current_sub_segment_plan.end());
+                 if (!plan.empty()) { last_valid_pose_on_plan = plan.back(); plan_already_has_points = true;} // Düzeltilmiş değişken adı
+            }
+        }
+        current_sweep_left_to_right = !current_sweep_left_to_right; // Düzeltilmiş değişken adı
+        // Bir sonraki süpürme hattı için ana yönelim current_sweep_yaw döngünün başında ayarlanacak
+    }
 
     if (plan.empty()) {
-        ROS_WARN("[FCP::GenPath] No valid points generated for the entire plan.");
+        ROS_WARN("[FullCoveragePlanner::generateBoustrophedonPath] No valid points generated.");
     } else {
-        ROS_INFO("[FCP::GenPath] Final path generated with %zu points.", plan.size());
+        ROS_INFO("[FullCoveragePlanner::generateBoustrophedonPath] Path generated with %zu points.", plan.size());
     }
 }
 

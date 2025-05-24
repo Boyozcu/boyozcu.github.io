@@ -1,8 +1,0 @@
-=====================================================
-[2025-05-20 22:23:57] KAPSAMA PLANLAYICI ÖDEV SCRIPT'İ BAŞLATILIYOR
-[2025-05-20 22:23:57] ROS Dağıtımı: noetic
-[2025-05-20 22:23:57] TurtleBot3 Modeli: waffle
-[2025-05-20 22:23:57] Çalışma Alanı: /home/boyozcu/robotlar_ws
-[2025-05-20 22:23:57] Otomatik Poligon: P1(-3.5,2.2), P2(3.5,2.2), P3(3.5,-2.0), P4(-3.5,-2.0)
-[2025-05-20 22:23:57] Log Dosyası: /home/boyozcu/robotlar_ws/src/blm6191_coverage_planners/logs/run_log_20250520_222357.txt
-[2025-05-20 22:23:57] =====================================================

@@ -1,23 +1,22 @@
-# planner_params.yaml
-
 FullCoveragePlanner:
-  robot_radius: 0.20
-  sweep_spacing_factor: 0.95
-  path_point_distance: 0.08
+  robot_radius: 0.17
+  sweep_spacing_factor: 0.9
+  path_point_distance: 0.1
   frame_id: "map"
   use_param_poly: true
-  p1_x: -4.0
-  p1_y: 3.5
-  p2_x: 4.0
-  p2_y: 3.5
-  p3_x: 4.0
-  p3_y: -3.5
-  p4_x: -4.0
-  p4_y: -3.5
+  p1_x: 1.0 
+  p1_y: 1.0
+  p2_x: 1.0
+  p2_y: -1.0
+  p3_x: -1.0
+  p3_y: -1.0
+  p4_x: -1.0
+  p4_y: 1.0
 
 PurePursuitLocalPlanner:
-  lookahead_distance: 0.2
-  linear_vel: 0.05
-  max_angular_vel: 0.35
-  goal_dist_tolerance: 0.08
+  lookahead_distance: 0.4
+  linear_vel: 0.15
+  max_angular_vel: 0.7
+  goal_dist_tolerance: 0.1
   robot_base_frame: "base_footprint"
+  # global_frame_id_param: "map" # C++ kodunda "map"e sabitlendi

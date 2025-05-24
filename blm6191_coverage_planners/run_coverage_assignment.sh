@@ -1,27 +1,20 @@
 #!/bin/bash
-# set -x # Hata ayıklama için: Çalıştıran her komutu gösterir. Debug sonrası kaldırın.
+# set -x 
 
-# === Betik Başlangıcı ve İlk Ortam Ayarlama ===
 echo "--- Script Başlangıcı: Ortam Ayarlanıyor ---"
-ROS_DISTRO_FOR_SOURCE_SCRIPT=${ROS_DISTRO:-noetic} # Noetic varsayılan
+ROS_DISTRO_FOR_SOURCE_SCRIPT=${ROS_DISTRO:-noetic}
 SETUP_BASH_SOURCED_CORRECTLY=false
 
-# 1. Sistem Geneli ROS Ortamını Source Et
 if [ -f "/opt/ros/${ROS_DISTRO_FOR_SOURCE_SCRIPT}/setup.bash" ]; then
-    echo "Sourcing /opt/ros/${ROS_DISTRO_FOR_SOURCE_SCRIPT}/setup.bash ..."
-    . "/opt/ros/${ROS_DISTRO_FOR_SOURCE_SCRIPT}/setup.bash" # Mevcut kabukta source et
+    . "/opt/ros/${ROS_DISTRO_FOR_SOURCE_SCRIPT}/setup.bash"
     SETUP_BASH_SOURCED_CORRECTLY=true
-else
-    echo "UYARI: Sistem geneli ROS setup.bash bulunamadı: /opt/ros/${ROS_DISTRO_FOR_SOURCE_SCRIPT}/setup.bash"
 fi
 
-# 2. Çalışma Alanı Ortamını Source Et (Betiğin konumundan yola çıkarak)
 SCRIPT_DIR_FOR_SOURCE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-WORKSPACE_DIR_FOR_SOURCE=$(cd "$SCRIPT_DIR_FOR_SOURCE/../../" && pwd) # Paket kökünden iki seviye yukarı
+WORKSPACE_DIR_FOR_SOURCE=$(cd "$SCRIPT_DIR_FOR_SOURCE/../../" && pwd)
 
 if [ -f "${WORKSPACE_DIR_FOR_SOURCE}/devel/setup.bash" ]; then
-    echo "Sourcing ${WORKSPACE_DIR_FOR_SOURCE}/devel/setup.bash ..."
-    . "${WORKSPACE_DIR_FOR_SOURCE}/devel/setup.bash" # Mevcut kabukta source et
+    . "${WORKSPACE_DIR_FOR_SOURCE}/devel/setup.bash"
     SETUP_BASH_SOURCED_CORRECTLY=true
 else
     echo "UYARI: Çalışma alanı ${WORKSPACE_DIR_FOR_SOURCE}/devel/setup.bash bulunamadı."
@@ -34,14 +27,14 @@ echo "--- Ortam Ayarlama Tamamlandı ---"
 sleep 1
 
 # === Konfigürasyon Başlangıcı ===
-ROS_DISTRO_DETECTED=$(echo $ROS_DISTRO) # Source edilmiş olmalı
+ROS_DISTRO_DETECTED=$(echo $ROS_DISTRO)
 export ROS_DISTRO=${ROS_DISTRO_DETECTED:-noetic}
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 BASE_WORKSPACE_DIR=$(cd "$SCRIPT_DIR/../../" && pwd)
 
 ROS_PACKAGE_NAME="blm6191_coverage_planners"
-LOG_DIR_RELATIVE_PATH="src/${ROS_PACKAGE_NAME}/logs" 
+LOG_DIR_RELATIVE_PATH="src/${ROS_PACKAGE_NAME}/logs"
 LOG_DIR="${BASE_WORKSPACE_DIR}/${LOG_DIR_RELATIVE_PATH}"
 
 export TURTLEBOT3_MODEL=${TURTLEBOT3_MODEL:-waffle}
@@ -56,23 +49,25 @@ RVIZ_CONFIG_FILE_PATH="${SCRIPT_DIR}/${RVIZ_CONFIG_FILE_NAME}"
 CUSTOM_MOVE_BASE_LAUNCH_FILE_NAME="my_coverage_move_base.launch"
 CUSTOM_MOVE_BASE_LAUNCH_FILE_PATH="${SCRIPT_DIR}/${CUSTOM_MOVE_BASE_LAUNCH_FILE_NAME}"
 
-# Planlayıcı Argümanları (Engel kaçınma ve takip için ayarlandı)
-# robot_radius: Planlayıcının süpürme hatlarını ve sınırları belirlerken kullanacağı efektif yarıçap.
-# Bu, fiziksel yarıçaptan büyük olmalı ve enflasyonu da bir miktar hesaba katmalı.
-CFG_robot_radius="0.35"         # <<< DEĞİŞTİ (costmap inflation_radius=0.40 ile uyumlu, biraz pay bırakıldı)
-CFG_sweep_spacing_factor="0.70" # Süpürme hatları arasında %30 örtüşme (2*0.35*0.7 = ~0.49m aralık)
-CFG_path_point_distance="0.08"  # Yoldaki nokta sıklığı
+CFG_robot_radius="0.20" # Duvarlara daha az yaklaşması için biraz artırıldı
+CFG_sweep_spacing_factor="0.7" # Örtüşmeyi artır, boşluk kalma riskini azalt
+CFG_path_point_distance="0.08"
+CFG_lookahead_distance="0.5" # Takip için
+CFG_linear_vel="0.10"
+CFG_max_angular_vel="0.5"
+CFG_goal_dist_tolerance="0.15"
 
-CFG_lookahead_distance="0.8"   # Pure Pursuit için
-CFG_linear_vel="0.10"          # Pure Pursuit için
-CFG_max_angular_vel="0.55"     # Pure Pursuit için
-CFG_goal_dist_tolerance="0.20"
-CFG_controller_frequency="10.0"
-
-# Otomatik Poligon Tanımlama (Genişletilmiş - HARİTANIZA GÖRE AYARLAYIN!)
 CFG_use_param_poly="true"
 CFG_launch_polygon_publisher="false"
 CFG_launch_polygon_visualizer="true"
+
+# Willow Garage haritasına göre ortadaki büyük masayı ve etrafını kapsayacak şekilde
+# Daha geniş bir alan tanımlandı. Haritanızdaki koordinatlara göre ayarlayın!
+# Örneğin, X: -1.5 ile 1.5 arası, Y: -2.0 ile 1.0 arası gibi bir alan.
+CFG_p1x="-1.5"; CFG_p1y="1.0"  # Sol Üst
+CFG_p2x="1.5";  CFG_p2y="1.0"  # Sağ Üst
+CFG_p3x="1.5";  CFG_p3y="-2.0" # Sağ Alt
+CFG_p4x="-1.5"; CFG_p4y="-2.0" # Sol Alt
 
 PERFORM_CATKIN_MAKE_AT_START=false
 # === Konfigürasyon Sonu ===
@@ -123,21 +118,21 @@ trap cleanup SIGINT SIGTERM
 
 echo "=====================================================" > "$LOG_FILE"
 log_message "KAPSAMA PLANLAYICI ÖDEV SCRIPT'İ BAŞLATILIYOR"
-log_message "ROS Dağıtımı: $ROS_DISTRO"; log_message "TurtleBot3 Modeli: $TURTLEBOT3_MODEL"
-log_message "Çalışma Alanı: $BASE_WORKSPACE_DIR"; log_message "Otomatik Poligon: P1(${CFG_p1x},${CFG_p1y}), P2(${CFG_p2x},${CFG_p2y}), P3(${CFG_p3x},${CFG_p3y}), P4(${CFG_p4x},${CFG_p4y})"
-log_message "Log Dosyası: $LOG_FILE"; log_message "====================================================="; sleep 1
+# ... (diğer log mesajları)
+log_message "Otomatik Poligon: P1(${CFG_p1x},${CFG_p1y}), P2(${CFG_p2x},${CFG_p2y}), P3(${CFG_p3x},${CFG_p3y}), P4(${CFG_p4x},${CFG_p4y})"
+log_message "====================================================="
+sleep 1
 
 if ! pgrep -x "rosmaster" > /dev/null && ! pgrep -x "roscore" > /dev/null ; then
-    log_message "Çalışan roscore bulunamadı. Yeni roscore arka planda başlatılıyor..."
     (roscore) >> "$LOG_FILE" 2>&1 &
     PIDS[roscore]=$!
     log_message "Roscore PID: ${PIDS[roscore]}. Başlaması için 5 sn bekleniyor..."
     sleep 5
-    if ! pgrep -x "rosmaster" > /dev/null && ! pgrep -x "roscore" > /dev/null ; then 
-        log_message "HATA: Roscore başlatılamadı!"; cleanup; exit 1; 
+    if ! pgrep -x "rosmaster" > /dev/null && ! pgrep -x "roscore" > /dev/null ; then
+        log_message "HATA: Roscore başlatılamadı!"; cleanup; exit 1
     fi
     log_message "Roscore başarıyla başlatıldı."
-else 
+else
     PIDS[roscore]=0 
     log_message "Mevcut roscore çalışıyor. PID: $(pgrep -x rosmaster || pgrep -x roscore)"
 fi
@@ -145,15 +140,15 @@ fi
 if [ "$PERFORM_CATKIN_MAKE_AT_START" = true ]; then
     log_message "Çalışma alanı derleniyor..."
     cd "$BASE_WORKSPACE_DIR" || { log_message "HATA: Çalışma alanına geçilemedi."; cleanup; exit 1; }
-    if catkin_make -DCATKIN_WHITELIST_PACKAGES="$ROS_PACKAGE_NAME" >> "$LOG_FILE" 2>&1; then 
+    if catkin_make -DCATKIN_WHITELIST_PACKAGES="$ROS_PACKAGE_NAME" >> "$LOG_FILE" 2>&1; then
         log_message "Derleme başarılı."
-    else 
+    else
         log_message "HATA: Derleme başarısız oldu."; cleanup; exit 1
     fi
-    if [ -f "${BASE_WORKSPACE_DIR}/devel/setup.bash" ]; then 
+    if [ -f "${BASE_WORKSPACE_DIR}/devel/setup.bash" ]; then
         . "${BASE_WORKSPACE_DIR}/devel/setup.bash"
-    else 
-        log_message "HATA: setup.bash bulunamadı!"; cleanup; exit 1; 
+    else
+        log_message "HATA: Derleme sonrası setup.bash bulunamadı!"; cleanup; exit 1;
     fi
 fi
 
@@ -169,11 +164,9 @@ PIDS[slam]=$!
 log_message "SLAM PID: ${PIDS[slam]}. Başlaması için 8 sn bekleniyor..."
 sleep 8
 
-if [ -f "$RVIZ_CONFIG_FILE_PATH" ]; then 
-    log_message "RVIZ ($RVIZ_CONFIG_FILE_PATH ile) başlatılıyor..."
+if [ -f "$RVIZ_CONFIG_FILE_PATH" ]; then
     (rosrun rviz rviz -d "$RVIZ_CONFIG_FILE_PATH") >> "$LOG_FILE" 2>&1 &
-else 
-    log_message "UYARI: RVIZ config dosyası ($RVIZ_CONFIG_FILE_PATH) bulunamadı. Varsayılan RVIZ başlatılıyor."
+else
     (rosrun rviz rviz) >> "$LOG_FILE" 2>&1 &
 fi
 PIDS[rviz]=$!
@@ -204,10 +197,13 @@ log_message "Navigasyon (move_base - ${CUSTOM_MOVE_BASE_LAUNCH_FILE_NAME}) başl
     linear_vel_val:="$CFG_linear_vel" \
     max_angular_vel_val:="$CFG_max_angular_vel" \
     goal_dist_tolerance_val:="$CFG_goal_dist_tolerance" \
-    controller_frequency_val:="$CFG_controller_frequency" \
     use_param_poly_val:="$CFG_use_param_poly" \
     launch_polygon_publisher_val:="$CFG_launch_polygon_publisher" \
     launch_polygon_visualizer_val:="$CFG_launch_polygon_visualizer" \
+    p1x_val:="$CFG_p1x" p1y_val:="$CFG_p1y" \
+    p2x_val:="$CFG_p2x" p2y_val:="$CFG_p2y" \
+    p3x_val:="$CFG_p3x" p3y_val:="$CFG_p3y" \
+    p4x_val:="$CFG_p4x" p4y_val:="$CFG_p4y" \
 ) >> "$LOG_FILE" 2>&1 &
 PIDS[move_base]=$!
 log_message "Move_base launch PID: ${PIDS[move_base]}. Başlaması için 10 sn bekleniyor..."
@@ -215,18 +211,33 @@ sleep 10
 
 log_message "#####################################################"
 log_message "SİSTEM BAŞLATILDI. LÜTFEN AŞAĞIDAKİ ADIMLARI İZLEYİN:"
-# ... (Kullanıcı talimatları) ...
+log_message "1. Robotu manuel olarak (teleop ile) Gazebo ortamında gezdirerek harita oluşturun."
+log_message "   Yeni terminalde: source ${BASE_WORKSPACE_DIR}/devel/setup.bash && roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch"
+log_message "2. RViz'de haritanın oluştuğunu ve TF ağacının (map->odom->base_footprint) kurulduğunu gözlemleyin."
+log_message "3. RViz'de kapsama alanı poligonunun (mavi çizgiler) doğru çizildiğini kontrol edin."
+log_message "4. Harita yeterli olduktan sonra, RViz'deki '2D Nav Goal' aracıyla bir hedef belirleyin."
+log_message "5. Robotun kapsama yolunu oluşturup takip ettiğini gözlemleyin."
 log_message "#####################################################"
+log_message "Ana süreçler çalışıyor. Sonlandırmak için bu terminalde Ctrl+C yapın."
 
 while true; do
     critical_processes_running=false
     if [[ ${PIDS[gazebo]} -ne 0 && -e /proc/${PIDS[gazebo]} ]]; then critical_processes_running=true; fi
     if [[ ${PIDS[slam]} -ne 0 && -e /proc/${PIDS[slam]} ]]; then critical_processes_running=true; fi
+
     if ! $critical_processes_running && ! pgrep -x "gzserver" > /dev/null ; then
         log_message "Kritik süreçler (Gazebo, SLAM) veya gzserver sonlanmış."
-        if ! pgrep -x "rosmaster" > /dev/null && ! pgrep -x "roscore" > /dev/null ; then log_message "Roscore/Rosmaster da sonlanmış. Script çıkıyor."; break; fi
+        if ! pgrep -x "rosmaster" > /dev/null && ! pgrep -x "roscore" > /dev/null ; then
+           log_message "Roscore/Rosmaster da sonlanmış. Script temizlenerek çıkacak."
+           break
+        fi
     fi
-    if ! pgrep -x "rosmaster" > /dev/null && ! pgrep -x "roscore" > /dev/null ; then log_message "Roscore/Rosmaster sonlanmış. Script çıkıyor."; break; fi
+    
+    if ! pgrep -x "rosmaster" > /dev/null && ! pgrep -x "roscore" > /dev/null ; then
+        log_message "Roscore/Rosmaster sonlanmış. Script temizlenerek çıkacak."
+        break
+    fi
     sleep 30
 done
+
 cleanup

@@ -12,7 +12,7 @@
 #include <nav_msgs/Path.h>
 #include <vector>
 #include <string>
-#include <algorithm>
+#include <algorithm> // std::min, std::max
 
 namespace blm6191_coverage_planners {
 
@@ -30,6 +30,7 @@ private:
     void polygonCallback(const geometry_msgs::PolygonStamped::ConstPtr& msg);
     bool isPointInPolygon(const geometry_msgs::Point& point, const std::vector<geometry_msgs::Point>& polygon_points_geom);
     bool isObstacle(double world_x, double world_y);
+    // İmza doğru (5 parametre)
     bool findClearPathSegment(const geometry_msgs::Point& start_p, const geometry_msgs::Point& end_p,
                                std::vector<geometry_msgs::PoseStamped>& segment_plan, double orientation_yaw,
                                const std::vector<geometry_msgs::Point>& current_polygon_geom);
