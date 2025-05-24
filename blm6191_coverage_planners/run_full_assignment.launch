@@ -7,22 +7,6 @@
   <arg name="open_rviz_launch" default="true" doc="Launch RVIZ with custom config"/>
   <arg name="rviz_config_file_name" default="coverage_assignment.rviz"/>
 
-  <!-- === FullCoveragePlanner için Argümanlar === -->
-  <arg name="robot_radius" default="0.17"/>
-  <arg name="sweep_spacing_factor" default="0.85"/>
-  <arg name="path_point_distance" default="0.05"/>
-  <arg name="use_param_poly" default="true"/> <!-- true: parametrelerden poligon, false: konudan poligon -->
-  <arg name="p1x" default="-4.0"/> <arg name="p1y" default="2.5"/>
-  <arg name="p2x" default="4.0"/> <arg name="p2y" default="2.5"/>
-  <arg name="p3x" default="4.0"/> <arg name="p3y" default="-2.5"/>
-  <arg name="p4x" default="-4.0"/> <arg name="p4y" default="-2.5"/>
-
-  <!-- === PurePursuitLocalPlanner için Argümanlar === -->
-  <arg name="lookahead_distance" default="0.4"/>
-  <arg name="linear_vel" default="0.15"/>
-  <arg name="max_angular_vel" default="0.7"/>
-  <arg name="goal_dist_tolerance" default="0.1"/>
-
   <!-- === Polygon Publisher için Argüman === -->
   <arg name="launch_polygon_publisher" default="false"/> <!-- true ise polygon_publisher_node başlar -->
 
@@ -47,22 +31,8 @@
   </include>
 
   <!-- === Move Base'i Özel Planlayıcılarla Başlat === -->
-  <!-- my_coverage_move_base.launch dosyasını include etmek yerine içeriğini buraya taşıyabiliriz
-       veya include edip argümanları geçebiliriz. Ayrı dosya daha modüler. -->
   <include file="$(find blm6191_coverage_planners)/my_coverage_move_base.launch">
     <arg name="model" value="$(arg model)"/>
-    <!-- FullCoveragePlanner argümanları -->
-    <arg name="robot_radius_val" value="$(arg robot_radius)"/>
-    <arg name="sweep_spacing_factor_val" value="$(arg sweep_spacing_factor)"/>
-    <arg name="path_point_distance_val" value="$(arg path_point_distance)"/>
-    <arg name="use_param_poly_val" value="$(arg use_param_poly)"/>
-    <!-- PurePursuitLocalPlanner argümanları -->
-    <arg name="lookahead_val" value="$(arg lookahead_distance)"/>
-    <arg name="linear_vel_val" value="$(arg linear_vel)"/>
-    <arg name="max_angular_vel_val" value="$(arg max_angular_vel)"/>
-    <arg name="goal_dist_tolerance_val" value="$(arg goal_dist_tolerance)"/>
-    <!-- Polygon Publisher argümanı -->
-    <arg name="launch_polygon_publisher_val" value="$(arg launch_polygon_publisher)"/>
   </include>
 
   <!-- === RVIZ'i Başlat === -->

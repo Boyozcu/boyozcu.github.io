@@ -24,27 +24,11 @@
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
     <param name="base_global_planner" value="$(arg base_global_planner)"/>
     <param name="base_local_planner" value="$(arg base_local_planner)"/>
-    <param name="controller_frequency" value="$(arg controller_frequency_val)"/>
-
+    <param name="controller_frequency" value="10.0"/>
     <rosparam file="$(find blm6191_coverage_planners)/costmap_common_params.yaml" command="load" ns="global_costmap" />
     <rosparam file="$(find blm6191_coverage_planners)/costmap_common_params.yaml" command="load" ns="local_costmap" />
     <rosparam file="$(find blm6191_coverage_planners)/local_costmap_params.yaml" command="load" />
     <rosparam file="$(find blm6191_coverage_planners)/global_costmap_params.yaml" command="load" />
-
-    <!-- FullCoveragePlanner ROS Parametreleri -->
-    <param name="FullCoveragePlanner/robot_radius" value="$(arg robot_radius_val)"/>
-    <param name="FullCoveragePlanner/sweep_spacing_factor" value="$(arg sweep_spacing_factor_val)"/>
-    <param name="FullCoveragePlanner/path_point_distance" value="$(arg path_point_distance_val)"/>
-    <param name="FullCoveragePlanner/use_param_poly" value="$(arg use_param_poly_val)"/>
-    <param name="FullCoveragePlanner/frame_id" value="map"/>
-
-    <!-- PurePursuitLocalPlanner ROS Parametreleri -->
-    <param name="PurePursuitLocalPlanner/lookahead_distance" value="$(arg lookahead_distance_val)"/>
-    <param name="PurePursuitLocalPlanner/linear_vel" value="$(arg linear_vel_val)"/>
-    <param name="PurePursuitLocalPlanner/max_angular_vel" value="$(arg max_angular_vel_val)"/>
-    <param name="PurePursuitLocalPlanner/goal_dist_tolerance" value="$(arg goal_dist_tolerance_val)"/>
-    <param name="PurePursuitLocalPlanner/robot_base_frame" value="base_footprint"/>
-
     <remap from="cmd_vel" to="/cmd_vel"/>
     <remap from="odom" to="/odom"/>
   </node>
