@@ -64,10 +64,10 @@ CFG_launch_polygon_visualizer="true"
 # Willow Garage haritasına göre ortadaki büyük masayı ve etrafını kapsayacak şekilde
 # Daha geniş bir alan tanımlandı. Haritanızdaki koordinatlara göre ayarlayın!
 # Örneğin, X: -1.5 ile 1.5 arası, Y: -2.0 ile 1.0 arası gibi bir alan.
-CFG_p1x="-1.5"; CFG_p1y="1.0"  # Sol Üst
-CFG_p2x="1.5";  CFG_p2y="1.0"  # Sağ Üst
-CFG_p3x="1.5";  CFG_p3y="-2.0" # Sağ Alt
-CFG_p4x="-1.5"; CFG_p4y="-2.0" # Sol Alt
+CFG_p1x="-3.0"; CFG_p1y="3.0"  # Sol Üst (Genişletildi)
+CFG_p2x="3.0";  CFG_p2y="3.0"  # Sağ Üst (Genişletildi)
+CFG_p3x="3.0";  CFG_p3y="-3.0" # Sağ Alt (Genişletildi)
+CFG_p4x="-3.0"; CFG_p4y="-3.0" # Sol Alt (Genişletildi)
 
 PERFORM_CATKIN_MAKE_AT_START=false
 # === Konfigürasyon Sonu ===
